@@ -164,6 +164,17 @@ function removerFaixasBrancasMobile() {
     }
 }
 
+// Função para incluir o script de redirecionamento de formulários para WhatsApp
+function incluirScriptFormWhatsapp() {
+    // Verifica se há formulários na página
+    if (document.querySelector('form')) {
+        // Adiciona o script form-to-whatsapp.js dinamicamente
+        const script = document.createElement('script');
+        script.src = 'js/form-to-whatsapp.js';
+        document.body.appendChild(script);
+    }
+}
+
 // Executar as funções quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
     inserirMenuPadronizado();
@@ -171,4 +182,5 @@ document.addEventListener('DOMContentLoaded', function() {
     adicionarBreadcrumbs();
     adicionarEventoMenuMobile();
     removerFaixasBrancasMobile(); // Adiciona a função para remover faixas brancas
+    incluirScriptFormWhatsapp(); // Adiciona a função para incluir o script de redirecionamento de formulários para WhatsApp
 });
