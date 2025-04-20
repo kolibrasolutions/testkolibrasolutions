@@ -35,6 +35,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
     }
     
+    // Variável global para armazenar os problemas selecionados
+    window.selectedProblems = [];
+    
     // Botões de próximo
     nextButtons.forEach(button => {
         button.addEventListener('click', function() {
@@ -46,24 +49,44 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Se estiver na seção 2 (problemas), salvar problemas selecionados e gerar itens de prioridade
                 if (currentSection === 2) {
-                    // Salvar problemas selecionados no localStorage
+                    // Salvar problemas selecionados no localStorage e na variável global
                     const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
                     let problems = [];
+                    
+                    // Limpar a variável global
+                    window.selectedProblems = [];
                     
                     checkboxes.forEach((checkbox, index) => {
                         const label = checkbox.nextElementSibling.textContent.trim();
                         const value = checkbox.value;
-                        problems.push({
+                        const problem = {
                             index: index + 1,
                             label: label,
                             value: value
-                        });
+                        };
+                        
+                        problems.push(problem);
+                        
+                        // Adicionar à variável global
+                        window.selectedProblems.push(problem);
                     });
                     
                     // Salvar no localStorage para recuperação futura
                     if (problems.length > 0) {
                         localStorage.setItem('selected_problems', JSON.stringify(problems));
-                        console.log('Problemas salvos no localStorage:', problems.length);
+                        console.log('Problemas salvos no localStorage e variável global:', problems.length);
+                        
+                        // Salvar também em um campo oculto no formulário
+                        const hiddenField = document.getElementById('hidden_problems') || document.createElement('input');
+                        hiddenField.type = 'hidden';
+                        hiddenField.id = 'hidden_problems';
+                        hiddenField.name = 'hidden_problems';
+                        hiddenField.value = JSON.stringify(problems);
+                        
+                        const form = document.getElementById('diagnosticForm');
+                        if (form && !document.getElementById('hidden_problems')) {
+                            form.appendChild(hiddenField);
+                        }
                     }
                     
                     // Gerar itens de prioridade
@@ -295,6 +318,38 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
             
+            // Verificar diretamente os checkboxes antes do envio
+            const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
+            if (checkboxes && checkboxes.length > 0) {
+                console.log('Checkboxes selecionados no momento do envio:', checkboxes.length);
+                
+                // Atualizar a variável global
+                window.selectedProblems = [];
+                
+                checkboxes.forEach((checkbox, index) => {
+                    const label = checkbox.nextElementSibling.textContent.trim();
+                    const value = checkbox.value;
+                    window.selectedProblems.push({
+                        index: index + 1,
+                        label: label,
+                        value: value
+                    });
+                });
+                
+                // Atualizar o campo oculto
+                const hiddenField = document.getElementById('hidden_problems') || document.createElement('input');
+                hiddenField.type = 'hidden';
+                hiddenField.id = 'hidden_problems';
+                hiddenField.name = 'hidden_problems';
+                hiddenField.value = JSON.stringify(window.selectedProblems);
+                
+                if (!document.getElementById('hidden_problems')) {
+                    form.appendChild(hiddenField);
+                }
+                
+                console.log('Problemas atualizados no momento do envio:', window.selectedProblems.length);
+            }
+            
             // Verificar se há problemas selecionados no localStorage
             const savedProblems = localStorage.getItem('selected_problems');
             console.log('Problemas salvos no localStorage antes do envio:', savedProblems);
@@ -303,36 +358,31 @@ document.addEventListener('DOMContentLoaded', function() {
             const formData = getFormData();
             
             // Verificação adicional para garantir que os problemas sejam incluídos
-            if (formData.problems.length === 0 && savedProblems) {
-                try {
-                    const problems = JSON.parse(savedProblems);
-                    console.log('Recuperando problemas do localStorage para o envio:', problems.length);
+            if (formData.problems.length === 0 && window.selectedProblems && window.selectedProblems.length > 0) {
+                console.log('Usando problemas da variável global para o envio:', window.selectedProblems.length);
+                
+                // Adicionar problemas da variável global ao formData
+                window.selectedProblems.forEach(problem => {
+                    formData.problems.push(problem);
                     
-                    // Adicionar problemas do localStorage ao formData
-                    problems.forEach(problem => {
-                        formData.problems.push(problem);
-                        
-                        // Recuperar a prioridade do localStorage
-                        const priority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
-                        let priorityText = '';
-                        
-                        if (priority === 'high') {
-                            priorityText = 'Alta Prioridade';
-                        } else if (priority === 'low') {
-                            priorityText = 'Baixa Prioridade';
-                        } else {
-                            priorityText = 'Média Prioridade';
-                        }
-                        
-                        formData.priorities.push({
-                            problem: problem.label,
-                            priority: priority,
-                            priorityText: priorityText
-                        });
+                    // Recuperar a prioridade do localStorage
+                    const priority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
+                    let priorityText = '';
+                    
+                    if (priority === 'high') {
+                        priorityText = 'Alta Prioridade';
+                    } else if (priority === 'low') {
+                        priorityText = 'Baixa Prioridade';
+                    } else {
+                        priorityText = 'Média Prioridade';
+                    }
+                    
+                    formData.priorities.push({
+                        problem: problem.label,
+                        priority: priority,
+                        priorityText: priorityText
                     });
-                } catch (e) {
-                    console.error('Erro ao recuperar problemas do localStorage para o envio:', e);
-                }
+                });
             }
             
             console.log('Dados do formulário para envio:', JSON.stringify(formData));
@@ -456,9 +506,68 @@ document.addEventListener('DOMContentLoaded', function() {
         // Problemas e prioridades
         message += `*Problemas Prioritários:*\n`;
         
-        // Verificar se há problemas selecionados no localStorage como fallback
-        if (data.priorities.length === 0) {
-            console.log('Nenhuma prioridade encontrada, verificando localStorage');
+        // Verificar a variável global primeiro (abordagem mais direta)
+        if (window.selectedProblems && window.selectedProblems.length > 0) {
+            console.log('Usando problemas da variável global:', window.selectedProblems.length);
+            
+            window.selectedProblems.forEach((problem, index) => {
+                // Recuperar a prioridade do localStorage
+                const priority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
+                let priorityText = '';
+                
+                if (priority === 'high') {
+                    priorityText = 'Alta Prioridade';
+                } else if (priority === 'low') {
+                    priorityText = 'Baixa Prioridade';
+                } else {
+                    priorityText = 'Média Prioridade';
+                }
+                
+                message += `${index + 1}. ${problem.label} - ${priorityText}\n`;
+            });
+        }
+        // Verificar campo oculto no formulário
+        else if (document.getElementById('hidden_problems')) {
+            try {
+                const hiddenProblems = JSON.parse(document.getElementById('hidden_problems').value);
+                console.log('Usando problemas do campo oculto:', hiddenProblems.length);
+                
+                if (hiddenProblems && hiddenProblems.length > 0) {
+                    hiddenProblems.forEach((problem, index) => {
+                        // Recuperar a prioridade do localStorage
+                        const priority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
+                        let priorityText = '';
+                        
+                        if (priority === 'high') {
+                            priorityText = 'Alta Prioridade';
+                        } else if (priority === 'low') {
+                            priorityText = 'Baixa Prioridade';
+                        } else {
+                            priorityText = 'Média Prioridade';
+                        }
+                        
+                        message += `${index + 1}. ${problem.label} - ${priorityText}\n`;
+                    });
+                } else {
+                    message += `Nenhum problema selecionado.\n`;
+                }
+            } catch (e) {
+                console.error('Erro ao recuperar problemas do campo oculto:', e);
+                message += `Nenhum problema selecionado.\n`;
+            }
+        }
+        // Verificar se há problemas nas prioridades já coletadas
+        else if (data.priorities.length > 0) {
+            console.log('Usando prioridades já coletadas:', data.priorities.length);
+            
+            // Usar as prioridades já coletadas
+            data.priorities.forEach((item, index) => {
+                message += `${index + 1}. ${item.problem} - ${item.priorityText}\n`;
+            });
+        }
+        // Verificar localStorage como último recurso
+        else {
+            console.log('Verificando localStorage como último recurso');
             
             // Tentar recuperar problemas do localStorage
             const savedProblems = localStorage.getItem('selected_problems');
@@ -491,13 +600,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     message += `Nenhum problema selecionado.\n`;
                 }
             } else {
-                message += `Nenhum problema selecionado.\n`;
+                // Último recurso: verificar checkboxes diretamente
+                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
+                if (checkboxes && checkboxes.length > 0) {
+                    console.log('Verificando checkboxes diretamente:', checkboxes.length);
+                    
+                    checkboxes.forEach((checkbox, index) => {
+                        const label = checkbox.nextElementSibling.textContent.trim();
+                        const value = checkbox.value;
+                        
+                        // Prioridade padrão
+                        message += `${index + 1}. ${label} - Média Prioridade\n`;
+                    });
+                } else {
+                    message += `Nenhum problema selecionado.\n`;
+                }
             }
-        } else {
-            // Usar as prioridades já coletadas
-            data.priorities.forEach((item, index) => {
-                message += `${index + 1}. ${item.problem} - ${item.priorityText}\n`;
-            });
         }
         
         message += `\n`;
