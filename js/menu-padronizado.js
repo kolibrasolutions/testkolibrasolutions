@@ -43,7 +43,6 @@ function inserirMenuPadronizado() {
         case 'construtor.html':
             document.getElementById('menu-construtor').classList.add('active');
             break;
-        case 'planos.html':
         case 'orcamento.html':
         case 'segmentacao.html':
         case 'diagnostico.html':
@@ -79,17 +78,11 @@ function adicionarBreadcrumbs() {
     let breadcrumbHTML = '<div class="breadcrumbs"><div class="container"><a href="index.html">Home</a>';
     
     switch(paginaAtual) {
-        case 'planos.html':
-            breadcrumbHTML += ' > <span>Planos</span>';
-            break;
         case 'portfolio.html':
             breadcrumbHTML += ' > <span>Portfólio</span>';
             break;
         case 'orcamento.html':
             breadcrumbHTML += ' > <span>Orçamento</span>';
-            break;
-        case 'construtor.html':
-            breadcrumbHTML += ' > <span>Construtor de Plano</span>';
             break;
         case 'segmentacao.html':
             breadcrumbHTML += ' > <span>Escolha seu caminho</span>';
