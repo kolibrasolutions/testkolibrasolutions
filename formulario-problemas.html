@@ -252,12 +252,9 @@
                 </div>
             </div>
             
-            <form id="problemsForm" action="https://formsubmit.co/kolibrasolutions@gmail.com" method="POST">
-                <!-- Campo oculto para redirecionamento após envio -->
-                <input type="hidden" name="_next" value="https://kolibrasolutions.vercel.app/obrigado.html">
-                
-                <!-- Campo oculto para assunto do e-mail -->
-                <input type="hidden" name="_subject" value="Novo formulário de problemas enviado">
+            <form id="problemsForm">
+                <!-- Formulário modificado para envio via WhatsApp -->
+                <input type="hidden" name="form_type" value="diagnostico_problemas">
                 
                 <!-- Seção 1: Informações Básicas -->
                 <div class="form-section">
@@ -439,6 +436,8 @@
 <script src="js/menu-padronizado.js"></script>
 <script src="js/form-fix.js"></script>
 <script src="js/form-update.js"></script>
-<script src="js/emailjs-integration.js"></script>
+<!-- Script de integração de e-mail removido -->
+<!-- Scripts para WhatsApp -->
+<script src="js/form-to-whatsapp.js"></script>
 </body>
 </html>
