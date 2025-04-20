@@ -301,75 +301,6 @@
             cursor: pointer;
         }
 
-        .problem-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            margin-bottom: 0.5rem;
-            background-color: #f8f9fa;
-            border-radius: 0.5rem;
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .problem-item-ghost {
-            opacity: 0.5;
-        }
-
-        .priority-select {
-            width: 150px;
-        }
-
-        .problem-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid var(--primary-color);
-        }
-
-        .problem-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--dark-color);
-        }
-
-        .priority-badge {
-            display: inline-block;
-            padding: 0.35rem 0.65rem;
-            font-size: 0.75rem;
-            font-weight: 700;
-            line-height: 1;
-            text-align: center;
-            white-space: nowrap;
-            vertical-align: baseline;
-            border-radius: 0.25rem;
-        }
-
-        .priority-high {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .priority-medium {
-            background-color: #ffc107;
-            color: var(--dark-color);
-        }
-
-        .priority-low {
-            background-color: #198754;
-            color: white;
-        }
-
-        .recommendation-box {
-            background-color: #e9f7fe;
-            border-radius: 0.5rem;
-            padding: 1rem;
-            border-left: 4px solid #17a2b8;
-        }
-
         .result-summary {
             background-color: #f8f9fa;
             border-radius: 0.5rem;
@@ -397,7 +328,7 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
-
+        
         /* Novos estilos para melhorar a navegação */
         .form-navigation {
             display: flex;
@@ -415,7 +346,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            width: 20%;
+            width: 33.33%;
             position: relative;
         }
 
@@ -488,57 +419,6 @@
             margin-bottom: 0;
             font-size: 0.9rem;
         }
-
-        /* Estilos para a lista de soluções */
-        .solutions-container {
-            margin-top: 2rem;
-        }
-
-        .solution-card {
-            background-color: white;
-            border-radius: 0.5rem;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
-            border-left: 4px solid #17a2b8;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .solution-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .solution-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: #17a2b8;
-        }
-
-        .solution-card p {
-            color: var(--dark-color);
-            margin-bottom: 1rem;
-        }
-
-        .solution-card .badge {
-            margin-right: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .solution-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .solution-price {
-            font-weight: 600;
-            color: var(--dark-color);
-        }
         
         /* Footer */
         .footer {
@@ -563,24 +443,6 @@
 
         /* Responsividade */
         @media (max-width: 768px) {
-            .section-step {
-                width: 33.33%;
-            }
-            
-            .section-step:nth-child(n+4) {
-                display: none;
-            }
-            
-            .problem-item {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            
-            .problem-item > div:last-child {
-                margin-top: 1rem;
-                width: 100%;
-            }
-            
             .form-navigation {
                 flex-direction: column;
                 gap: 1rem;
@@ -651,7 +513,6 @@
             
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                
                 <li><a href="portfolio.html">Portfólio</a></li>
                 <li><a href="orcamento.html" class="btn-nav">Orçamento</a></li>
             </ul>
@@ -669,13 +530,7 @@
     <!-- Formulário de Diagnóstico -->
     <div class="container">
         <div class="form-container">
-            <form id="diagnosticForm" action="https://formsubmit.co/kolibrasolutions@gmail.com" method="POST">
-                <!-- Campo oculto para redirecionamento após envio -->
-                <input type="hidden" name="_next" value="https://kolibrasolutions.vercel.app/obrigado.html">
-                
-                <!-- Campo oculto para assunto do e-mail -->
-                <input type="hidden" name="_subject" value="Novo diagnóstico de problemas solicitado">
-                
+            <form id="diagnosticForm">
                 <!-- Indicador de Seções -->
                 <div class="section-indicator">
                     <div class="section-step active" data-step="1">
@@ -688,17 +543,13 @@
                     </div>
                     <div class="section-step" data-step="3">
                         <div class="step-circle">3</div>
-                        <div class="step-label">Priorização</div>
-                    </div>
-                    <div class="section-step" data-step="5">
-                        <div class="step-circle">4</div>
                         <div class="step-label">Finalizar</div>
                     </div>
                 </div>
                 
                 <!-- Barra de Progresso -->
                 <div class="progress">
-                    <div class="progress-bar" role="progressbar" style="width: 20%" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                    <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
                 </div>
                 
                 <!-- Seção 1: Informações do Negócio -->
@@ -792,7 +643,7 @@
                     <h2 class="section-title">Identificação de Problemas</h2>
                     
                     <div class="section-info">
-                        <p>Selecione os problemas que sua empresa enfrenta atualmente. Você poderá priorizar esses problemas na próxima etapa.</p>
+                        <p>Selecione os problemas que sua empresa enfrenta atualmente.</p>
                     </div>
                     
                     <div class="problem-category">
@@ -816,43 +667,9 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="ineffective_social_media" id="problem_ineffective_social_media" name="problems[]">
-                            <label class="form-check-label" for="problem_ineffective_social_media">
-                                Redes sociais ineficientes
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="no_marketing_strategy" id="problem_no_marketing_strategy" name="problems[]">
-                            <label class="form-check-label" for="problem_no_marketing_strategy">
-                                Ausência de estratégia de marketing
-                            </label>
-                        </div>
-                    </div>
-                    
-                    <div class="problem-category">
-                        <h3>Identidade Visual e Branding</h3>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="outdated_logo" id="problem_outdated_logo" name="problems[]">
-                            <label class="form-check-label" for="problem_outdated_logo">
-                                Logo desatualizada ou amadora
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="inconsistent_visual" id="problem_inconsistent_visual" name="problems[]">
-                            <label class="form-check-label" for="problem_inconsistent_visual">
-                                Identidade visual inconsistente
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="weak_brand" id="problem_weak_brand" name="problems[]">
-                            <label class="form-check-label" for="problem_weak_brand">
-                                Marca fraca ou pouco reconhecida
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="no_brand_guidelines" id="problem_no_brand_guidelines" name="problems[]">
-                            <label class="form-check-label" for="problem_no_brand_guidelines">
-                                Ausência de manual de identidade visual
+                            <input class="form-check-input" type="checkbox" value="poor_ux" id="problem_poor_ux" name="problems[]">
+                            <label class="form-check-label" for="problem_poor_ux">
+                                Experiência do usuário ruim no site
                             </label>
                         </div>
                     </div>
@@ -866,8 +683,8 @@
                             </label>
                         </div>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="poor_seo" id="problem_poor_seo" name="problems[]">
-                            <label class="form-check-label" for="problem_poor_seo">
+                            <input class="form-check-input" type="checkbox" value="weak_seo" id="problem_weak_seo" name="problems[]">
+                            <label class="form-check-label" for="problem_weak_seo">
                                 SEO fraco (não aparece nas buscas)
                             </label>
                         </div>
@@ -875,12 +692,6 @@
                             <input class="form-check-input" type="checkbox" value="no_ecommerce" id="problem_no_ecommerce" name="problems[]">
                             <label class="form-check-label" for="problem_no_ecommerce">
                                 Ausência de e-commerce ou loja online
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" value="poor_user_experience" id="problem_poor_user_experience" name="problems[]">
-                            <label class="form-check-label" for="problem_poor_user_experience">
-                                Experiência do usuário ruim no site
                             </label>
                         </div>
                     </div>
@@ -924,29 +735,8 @@
                     </div>
                 </div>
                 
-                <!-- Seção 3: Priorização de Problemas -->
+                <!-- Seção 3: Finalização -->
                 <div class="section" id="section3">
-                    <h2 class="section-title">Priorização de Problemas</h2>
-                    
-                    <div class="section-info">
-                        <p>Defina a prioridade dos problemas selecionados. Isso nos ajudará a focar nas soluções mais urgentes para o seu negócio.</p>
-                    </div>
-                    
-                    <div id="priorityContainer">
-                        <!-- Os problemas selecionados serão adicionados aqui dinamicamente -->
-                        <div class="text-center py-4">
-                            <p>Selecione pelo menos um problema na etapa anterior.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="form-navigation">
-                        <button type="button" class="btn btn-outline-primary prev-btn" data-prev="2">Anterior</button>
-                        <button type="button" class="btn btn-primary next-btn" data-next="5">Próximo</button>
-                    </div>
-                </div>
-                
-                <!-- Seção 5: Finalização -->
-                <div class="section" id="section5">
                     <h2 class="section-title">Finalizar Diagnóstico</h2>
                     
                     <div class="section-info">
@@ -957,9 +747,9 @@
                         <h3>Resumo do Diagnóstico</h3>
                         <p><strong>Empresa:</strong> <span id="summary_business"></span></p>
                         <p><strong>Responsável:</strong> <span id="summary_contact"></span></p>
-                        <p><strong>Problemas Prioritários:</strong></p>
+                        <p><strong>Problemas Selecionados:</strong></p>
                         <ul id="summary_problems">
-                            <!-- Os problemas prioritários serão adicionados aqui -->
+                            <!-- Os problemas selecionados serão adicionados aqui -->
                         </ul>
                     </div>
                     
@@ -980,8 +770,10 @@
                     </div>
                     
                     <div class="form-navigation">
-                        <button type="button" class="btn btn-outline-primary prev-btn" data-prev="3">Anterior</button>
-                        <button type="submit" class="btn btn-secondary" id="submitDiagnostico">Enviar Diagnóstico</button>
+                        <button type="button" class="btn btn-outline-primary prev-btn" data-prev="2">Anterior</button>
+                        <button type="submit" class="btn btn-success" id="submitDiagnostico">
+                            <i class="fab fa-whatsapp"></i> Enviar via WhatsApp
+                        </button>
                     </div>
                 </div>
             </form>
@@ -1002,434 +794,5 @@
     <!-- Scripts personalizados -->
     <script src="js/menu-padronizado.js"></script>
     <script src="js/diagnostico-whatsapp.js"></script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Navegação Mobile
-            const navToggle = document.querySelector('.nav-toggle');
-            const navMenu = document.querySelector('.nav-menu');
-            
-            if (navToggle) {
-                navToggle.addEventListener('click', function() {
-                    navToggle.classList.toggle('active');
-                    navMenu.classList.toggle('active');
-                });
-            }
-            
-            // Navegação entre seções
-            const sections = document.querySelectorAll('.section');
-            const progressBar = document.querySelector('.progress-bar');
-            const nextButtons = document.querySelectorAll('.next-btn');
-            const prevButtons = document.querySelectorAll('.prev-btn');
-            const sectionSteps = document.querySelectorAll('.section-step');
-            
-            // Função para mostrar uma seção específica
-            function showSection(sectionNumber) {
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-                
-                document.getElementById(`section${sectionNumber}`).classList.add('active');
-                
-                // Atualizar barra de progresso
-                const progress = (sectionNumber / sections.length) * 100;
-                progressBar.style.width = `${progress}%`;
-                progressBar.setAttribute('aria-valuenow', progress);
-                
-                // Atualizar indicador de seção
-                sectionSteps.forEach(step => {
-                    const stepNumber = parseInt(step.getAttribute('data-step'));
-                    step.classList.remove('active', 'completed');
-                    
-                    if (stepNumber === sectionNumber) {
-                        step.classList.add('active');
-                    } else if (stepNumber < sectionNumber) {
-                        step.classList.add('completed');
-                    }
-                });
-                
-                // Rolar para o topo do formulário
-                document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
-            }
-            
-            // Botões de próximo
-            nextButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const nextSection = parseInt(this.getAttribute('data-next'));
-                    
-                    // Validar campos da seção atual antes de avançar
-                    const currentSection = parseInt(this.closest('.section').id.replace('section', ''));
-                    if (validateSection(currentSection)) {
-                        
-                        // Se estiver na seção 2 (problemas), gerar itens de prioridade
-                        if (currentSection === 2) {
-                            generatePriorityItems();
-                        }
-                        
-                        // Se estiver na seção 3 (priorização), gerar soluções
-                        if (currentSection === 3) {
-                            generateSolutions();
-                        }
-                        
-                        // Se estiver na seção 4 (soluções), gerar resumo
-                        if (currentSection === 4) {
-                            generateSummary();
-                        }
-                        
-                        showSection(nextSection);
-                    }
-                });
-            });
-            
-            // Botões de anterior
-            prevButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const prevSection = parseInt(this.getAttribute('data-prev'));
-                    showSection(prevSection);
-                });
-            });
-            
-            // Validação de seções
-            function validateSection(sectionNumber) {
-                const section = document.getElementById(`section${sectionNumber}`);
-                const requiredFields = section.querySelectorAll('[required]');
-                let isValid = true;
-                
-                requiredFields.forEach(field => {
-                    if (!field.value) {
-                        field.classList.add('is-invalid');
-                        isValid = false;
-                    } else {
-                        field.classList.remove('is-invalid');
-                    }
-                });
-                
-                // Validações específicas por seção
-                if (sectionNumber === 2) {
-                    const selectedProblems = section.querySelectorAll('input[type="checkbox"]:checked');
-                    if (selectedProblems.length === 0) {
-                        alert('Selecione pelo menos um problema para continuar.');
-                        isValid = false;
-                    }
-                }
-                
-                return isValid;
-            }
-            
-            // Gerar itens de prioridade com base nos problemas selecionados
-            function generatePriorityItems() {
-                const priorityContainer = document.getElementById('priorityContainer');
-                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
-                
-                if (checkboxes.length === 0) {
-                    priorityContainer.innerHTML = `
-                        <div class="text-center py-4">
-                            <p>Selecione pelo menos um problema na etapa anterior.</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                priorityContainer.innerHTML = '';
-                
-                // Criar um array para armazenar os problemas
-                let problems = [];
-                
-                // Coletar todos os problemas selecionados
-                checkboxes.forEach((checkbox, index) => {
-                    const label = checkbox.nextElementSibling.textContent.trim();
-                    const value = checkbox.value;
-                    problems.push({
-                        index: index + 1,
-                        label: label,
-                        value: value
-                    });
-                });
-                
-                // Adicionar cada problema ao container
-                problems.forEach((problem) => {
-                    const problemItem = document.createElement('div');
-                    problemItem.className = 'problem-item';
-                    problemItem.innerHTML = `
-                        <div>
-                            <strong>${problem.index}. ${problem.label}</strong>
-                        </div>
-                        <div>
-                            <select class="form-select priority-select" name="priority_${problem.value}" id="priority_${problem.value}">
-                                <option value="high">Alta Prioridade</option>
-                                <option value="medium" selected>Média Prioridade</option>
-                                <option value="low">Baixa Prioridade</option>
-                            </select>
-                        </div>
-                    `;
-                    
-                    priorityContainer.appendChild(problemItem);
-                });
-                
-                // Adicionar evento de mudança para cada select de prioridade
-                document.querySelectorAll('.priority-select').forEach(select => {
-                    select.addEventListener('change', function() {
-                        console.log('Prioridade alterada:', this.name, this.value);
-                    });
-                });
-            }
-            
-            // Gerar soluções com base nos problemas selecionados
-            function generateSolutions() {
-                const solutionsContainer = document.getElementById('solutionsContainer');
-                const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
-                
-                if (checkboxes.length === 0) {
-                    solutionsContainer.innerHTML = `
-                        <div class="text-center py-4">
-                            <p>Nenhum problema selecionado para gerar soluções.</p>
-                        </div>
-                    `;
-                    return;
-                }
-                
-                solutionsContainer.innerHTML = '';
-                
-                // Mapeamento de problemas para soluções
-                const solutionsMap = {
-                    'low_visibility': {
-                        title: 'Estratégia de Marketing Digital',
-                        description: 'Desenvolvimento de estratégia completa de marketing digital para aumentar a visibilidade online da sua empresa.',
-                        tags: ['SEO', 'Redes Sociais', 'Google Ads'],
-                        price: 'A partir de R$ 1.200,00'
-                    },
-                    'few_leads': {
-                        title: 'Funil de Vendas Otimizado',
-                        description: 'Criação de funil de vendas otimizado para captar mais leads e aumentar as conversões.',
-                        tags: ['Landing Pages', 'Email Marketing', 'CRM'],
-                        price: 'A partir de R$ 1.500,00'
-                    },
-                    'low_conversion': {
-                        title: 'Otimização de Conversão',
-                        description: 'Análise e otimização do processo de vendas para aumentar a taxa de conversão.',
-                        tags: ['CRO', 'UX/UI', 'Analytics'],
-                        price: 'A partir de R$ 1.800,00'
-                    },
-                    'ineffective_social_media': {
-                        title: 'Gestão de Redes Sociais',
-                        description: 'Planejamento, criação e gestão de conteúdo para suas redes sociais.',
-                        tags: ['Conteúdo', 'Engajamento', 'Análise'],
-                        price: 'A partir de R$ 900,00/mês'
-                    },
-                    'no_marketing_strategy': {
-                        title: 'Plano de Marketing Completo',
-                        description: 'Desenvolvimento de plano de marketing completo alinhado aos objetivos do seu negócio.',
-                        tags: ['Estratégia', 'Posicionamento', 'Branding'],
-                        price: 'A partir de R$ 2.500,00'
-                    },
-                    'outdated_logo': {
-                        title: 'Redesign de Logo',
-                        description: 'Criação de nova identidade visual moderna e alinhada ao posicionamento da sua marca.',
-                        tags: ['Design', 'Branding', 'Identidade'],
-                        price: 'A partir de R$ 800,00'
-                    },
-                    'inconsistent_visual': {
-                        title: 'Manual de Identidade Visual',
-                        description: 'Desenvolvimento de manual completo de identidade visual para garantir consistência em todos os pontos de contato.',
-                        tags: ['Branding', 'Design', 'Padronização'],
-                        price: 'A partir de R$ 1.500,00'
-                    },
-                    'weak_brand': {
-                        title: 'Estratégia de Branding',
-                        description: 'Desenvolvimento de estratégia de branding para fortalecer e posicionar sua marca no mercado.',
-                        tags: ['Posicionamento', 'Valores', 'Comunicação'],
-                        price: 'A partir de R$ 2.000,00'
-                    },
-                    'no_brand_guidelines': {
-                        title: 'Manual de Marca',
-                        description: 'Criação de manual de marca completo com diretrizes de uso e aplicações.',
-                        tags: ['Branding', 'Padronização', 'Comunicação'],
-                        price: 'A partir de R$ 1.200,00'
-                    },
-                    'no_website': {
-                        title: 'Desenvolvimento de Website',
-                        description: 'Criação de site profissional, responsivo e otimizado para conversões.',
-                        tags: ['Web Design', 'UX/UI', 'Responsivo'],
-                        price: 'A partir de R$ 2.500,00'
-                    },
-                    'poor_seo': {
-                        title: 'Otimização SEO',
-                        description: 'Estratégia completa de SEO para melhorar o posicionamento do seu site nos mecanismos de busca.',
-                        tags: ['Keywords', 'Conteúdo', 'Link Building'],
-                        price: 'A partir de R$ 1.200,00'
-                    },
-                    'no_ecommerce': {
-                        title: 'Loja Virtual',
-                        description: 'Desenvolvimento de e-commerce completo para vender seus produtos online.',
-                        tags: ['E-commerce', 'Pagamentos', 'Logística'],
-                        price: 'A partir de R$ 3.500,00'
-                    },
-                    'poor_user_experience': {
-                        title: 'Redesign UX/UI',
-                        description: 'Redesign da experiência do usuário e interface do seu site para melhorar a usabilidade e conversões.',
-                        tags: ['UX/UI', 'Usabilidade', 'Conversão'],
-                        price: 'A partir de R$ 2.000,00'
-                    },
-                    'inefficient_processes': {
-                        title: 'Consultoria de Processos',
-                        description: 'Análise e otimização dos processos internos para aumentar a eficiência operacional.',
-                        tags: ['Processos', 'Eficiência', 'Gestão'],
-                        price: 'A partir de R$ 2.500,00'
-                    },
-                    'poor_customer_service': {
-                        title: 'Sistema de Atendimento ao Cliente',
-                        description: 'Implementação de sistema de atendimento ao cliente eficiente e integrado.',
-                        tags: ['CRM', 'Atendimento', 'Satisfação'],
-                        price: 'A partir de R$ 1.800,00'
-                    },
-                    'high_costs': {
-                        title: 'Análise de Custos e Otimização',
-                        description: 'Análise detalhada dos custos operacionais e estratégias para redução.',
-                        tags: ['Custos', 'Eficiência', 'Economia'],
-                        price: 'A partir de R$ 2.000,00'
-                    },
-                    'team_management': {
-                        title: 'Sistema de Gestão de Equipe',
-                        description: 'Implementação de sistema de gestão de equipe para melhorar a produtividade e comunicação.',
-                        tags: ['Gestão', 'Produtividade', 'Comunicação'],
-                        price: 'A partir de R$ 1.500,00'
-                    }
-                };
-                
-                // Adicionar soluções com base nos problemas selecionados
-                checkboxes.forEach(checkbox => {
-                    const value = checkbox.value;
-                    const solution = solutionsMap[value];
-                    
-                    if (solution) {
-                        const solutionCard = document.createElement('div');
-                        solutionCard.className = 'solution-card';
-                        
-                        let tagsHTML = '';
-                        solution.tags.forEach(tag => {
-                            tagsHTML += `<span class="badge bg-primary">${tag}</span> `;
-                        });
-                        
-                        solutionCard.innerHTML = `
-                            <h3>${solution.title}</h3>
-                            <p>${solution.description}</p>
-                            <div>${tagsHTML}</div>
-                            <div class="solution-footer">
-                                <div class="solution-price">${solution.price}</div>
-                                <div>
-                                    <input type="checkbox" class="form-check-input" id="solution_${value}" name="selected_solutions[]" value="${value}" checked>
-                                    <label class="form-check-label" for="solution_${value}">Incluir na proposta</label>
-                                </div>
-                            </div>
-                        `;
-                        
-                        solutionsContainer.appendChild(solutionCard);
-                    }
-                });
-                
-                // Adicionar solução personalizada
-                const customSolution = document.createElement('div');
-                customSolution.className = 'solution-card';
-                customSolution.innerHTML = `
-                    <h3>Solução Personalizada</h3>
-                    <p>Desenvolvemos uma solução completamente personalizada para atender às necessidades específicas do seu negócio.</p>
-                    <div>
-                        <span class="badge bg-secondary">Personalizado</span>
-                        <span class="badge bg-secondary">Consultoria</span>
-                        <span class="badge bg-secondary">Sob Medida</span>
-                    </div>
-                    <div class="solution-footer">
-                        <div class="solution-price">Preço sob consulta</div>
-                        <div>
-                            <input type="checkbox" class="form-check-input" id="solution_custom" name="selected_solutions[]" value="custom">
-                            <label class="form-check-label" for="solution_custom">Incluir na proposta</label>
-                        </div>
-                    </div>
-                `;
-                
-                solutionsContainer.appendChild(customSolution);
-            }
-            
-            // Gerar resumo para a seção final
-            function generateSummary() {
-                const businessName = document.getElementById('businessName').value;
-                const contactName = document.getElementById('contactName').value;
-                const summaryBusiness = document.getElementById('summary_business');
-                const summaryContact = document.getElementById('summary_contact');
-                const summaryProblems = document.getElementById('summary_problems');
-                
-                summaryBusiness.textContent = businessName;
-                summaryContact.textContent = contactName;
-                
-                // Listar problemas prioritários
-                summaryProblems.innerHTML = '';
-                const prioritySelects = document.querySelectorAll('.priority-select');
-                
-                prioritySelects.forEach(select => {
-                    const problemItem = select.closest('.problem-item');
-                    const problemText = problemItem.querySelector('strong').textContent.substring(3); // Remover o número e ponto
-                    const priority = select.value;
-                    
-                    const priorityClass = priority === 'high' ? 'priority-high' : 
-                                         priority === 'medium' ? 'priority-medium' : 'priority-low';
-                    
-                    const priorityText = priority === 'high' ? 'Alta' : 
-                                        priority === 'medium' ? 'Média' : 'Baixa';
-                    
-                    const listItem = document.createElement('li');
-                    listItem.innerHTML = `
-                        ${problemText} - <span class="priority-badge ${priorityClass}">${priorityText}</span>
-                    `;
-                    
-                    summaryProblems.appendChild(listItem);
-                });
-            }
-            
-            // Envio do formulário
-            const diagnosticForm = document.getElementById('diagnosticForm');
-            
-            diagnosticForm.addEventListener('submit', function(e) {
-                // Validar a seção final
-                if (!validateSection(5)) {
-                    e.preventDefault();
-                }
-                
-                // Adicionar campo oculto com resumo do diagnóstico
-                const formData = new FormData(diagnosticForm);
-                const diagnosticSummary = {
-                    business: {
-                        name: formData.get('business_name'),
-                        type: formData.get('business_type'),
-                        size: formData.get('business_size'),
-                        time: formData.get('business_time'),
-                        location: formData.get('business_location'),
-                        description: formData.get('business_description')
-                    },
-                    contact: {
-                        name: formData.get('contact_name'),
-                        email: formData.get('contact_email'),
-                        phone: formData.get('contact_phone'),
-                        preferred: formData.get('preferred_contact')
-                    },
-                    problems: Array.from(document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked')).map(checkbox => {
-                        const value = checkbox.value;
-                        const priority = document.querySelector(`select[name="priority_${value}"]`)?.value || 'medium';
-                        return { problem: value, priority: priority };
-                    }),
-                    solutions: Array.from(document.querySelectorAll('input[type="checkbox"][name="selected_solutions[]"]:checked')).map(checkbox => checkbox.value)
-                };
-                
-                // Criar campo oculto para o resumo
-                const summaryField = document.createElement('input');
-                summaryField.type = 'hidden';
-                summaryField.name = 'diagnostic_summary';
-                summaryField.value = JSON.stringify(diagnosticSummary);
-                diagnosticForm.appendChild(summaryField);
-            });
-        });
-    </script>
-<script src="js/menu-padronizado.js"></script>
-<script src="js/form-fix.js"></script>
-<script src="js/form-update.js"></script>
-<!-- Removido emailjs conforme solicitado -->
 </body>
 </html>
