@@ -3,9 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Planos e Serviços - KOLIBRA SOLUTIONS</title>
+    <title>Pacotes e Serviços - KOLIBRA SOLUTIONS</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kolibrasolutions.com.br/">
+    <meta property="og:title" content="KOLIBRA SOLUTIONS - A solução certa para seu negócio">
+    <meta property="og:description" content="Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grandes resultados">
+    <meta property="og:image" content="https://www.kolibrasolutions.com.br/share-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Kolibra Solutions">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.kolibrasolutions.com.br/">
+    <meta property="twitter:title" content="KOLIBRA SOLUTIONS - A solução certa para seu negócio">
+    <meta property="twitter:description" content="Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grandes resultados">
+    <meta property="twitter:image" content="https://www.kolibrasolutions.com.br/share-image.jpg">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="icon" href="img/LOGO COLOR.png" type="image/png">
+    <link rel="icon" href="img/logo-new.png" type="image/png">
     <style>
         :root {
             --primary-color: #004494;
@@ -172,6 +190,8 @@
         .logo img {
             height: 70px;
             width: auto;
+            transform: scale(1.8);
+            transform-origin: left center;
         }
         
         .nav-menu {
@@ -255,7 +275,7 @@
             height: 70px;
         }
         
-        /* Planos Mensais */
+        /* Pacotes Mensais */
         .plans-section {
             padding: 80px 0;
             background-color: var(--light-color);
@@ -812,7 +832,7 @@
     <nav class="navbar">
         <div class="container">
             <a href="index.html" class="logo">
-                <img src="img/LOGO COLOR.png" alt="KOLIBRA SOLUTIONS">
+                <img src="img/logo-new.png" alt="KOLIBRA SOLUTIONS">
             </a>
             
             <div class="nav-toggle">
@@ -823,7 +843,7 @@
             
             <ul class="nav-menu">
                 <li><a href="index.html">Home</a></li>
-                <li><a href="planos.html" class="active">Planos</a></li>
+                <li><a href="planos.html" class="active">Pacotes</a></li>
                 <li><a href="portfolio.html">Portfólio</a></li>
                 <li><a href="orcamento.html" class="btn-nav">Orçamento</a></li>
             </ul>
@@ -833,7 +853,7 @@
     <!-- Header da Página -->
     <header class="page-header">
         <div class="container">
-            <h1>Planos e Serviços</h1>
+            <h1>Pacotes e Serviços</h1>
             <p>Soluções personalizadas para o crescimento do seu negócio</p>
         </div>
         
@@ -844,18 +864,43 @@
         </div>
     </header>
     
-    <!-- Planos Mensais -->
+    <!-- Pacotes Mensais -->
     <section class="plans-section">
         <div class="container">
             <div class="section-header">
-                <h2>Nossos Planos Mensais</h2>
+                <h2>Nossos Pacotes Mensais</h2>
                 <p>Escolha o plano ideal para o seu negócio e comece a transformar sua presença digital</p>
             </div>
             
             <div class="plans-grid">
                 <div class="plan-card">
                     <div class="plan-header">
-                        <h3>Plano Starter</h3>
+                        <h3>Crie seu pacote</h3>
+                        <div class="plan-price">
+                            <span class="currency">R$</span>
+                            <span class="amount">Sob</span>
+                            <span class="period">consulta</span>
+                        </div>
+                    </div>
+                    
+                    <div class="plan-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Escolha serviços avulsos</li>
+                            <li><i class="fas fa-check"></i> Pague apenas pelo que precisar</li>
+                            <li><i class="fas fa-check"></i> Orçamento visual na hora</li>
+                            <li><i class="fas fa-check"></i> Sem compromisso mensal</li>
+                            <li><i class="fas fa-check"></i> Atendimento personalizado</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="plan-footer">
+                        <a href="#solicitar-plano" class="btn btn-outline" data-plan="personalizado">Montar Pacote</a>
+                    </div>
+                </div>
+                
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>PACOTE BASIC</h3>
                         <div class="plan-price">
                             <span class="currency">R$</span>
                             <span class="amount">199</span>
@@ -866,15 +911,15 @@
                     <div class="plan-features">
                         <ul>
                             <li><i class="fas fa-check"></i> Identidade Visual Básica</li>
-                            <li><i class="fas fa-check"></i> Site Institucional (5 páginas)</li>
-                            <li><i class="fas fa-check"></i> Suporte por E-mail</li>
-                            <li><i class="fas fa-check"></i> 1 Rede Social</li>
+                            <li><i class="fas fa-check"></i> Foco em Instagram</li>
+                            <li><i class="fas fa-check"></i> Gestão de 1 Rede Social</li>
+                            <li><i class="fas fa-check"></i> Ideal para negócios iniciantes</li>
                             <li><i class="fas fa-check"></i> Relatório Mensal</li>
                         </ul>
                     </div>
                     
                     <div class="plan-footer">
-                        <a href="#solicitar-plano" class="btn btn-outline" data-plan="starter">Solicitar Plano</a>
+                        <a href="#solicitar-plano" class="btn btn-outline" data-plan="basic">Solicitar Pacote</a>
                     </div>
                 </div>
                 
@@ -882,7 +927,7 @@
                     <div class="plan-badge">Mais Popular</div>
                     
                     <div class="plan-header">
-                        <h3>Plano Business</h3>
+                        <h3>PACOTE STARTER</h3>
                         <div class="plan-price">
                             <span class="currency">R$</span>
                             <span class="amount">399</span>
@@ -894,7 +939,7 @@
                         <ul>
                             <li><i class="fas fa-check"></i> Identidade Visual Completa</li>
                             <li><i class="fas fa-check"></i> Site Institucional (10 páginas)</li>
-                            <li><i class="fas fa-check"></i> Suporte Prioritário</li>
+                            <li><i class="fas fa-check"></i> Ideal para negócios maiores</li>
                             <li><i class="fas fa-check"></i> 3 Redes Sociais</li>
                             <li><i class="fas fa-check"></i> Blog Integrado</li>
                             <li><i class="fas fa-check"></i> SEO Básico</li>
@@ -903,13 +948,13 @@
                     </div>
                     
                     <div class="plan-footer">
-                        <a href="#solicitar-plano" class="btn btn-secondary" data-plan="business">Solicitar Plano</a>
+                        <a href="#solicitar-plano" class="btn btn-secondary" data-plan="starter">Solicitar Pacote</a>
                     </div>
                 </div>
                 
                 <div class="plan-card">
                     <div class="plan-header">
-                        <h3>Plano Premium</h3>
+                        <h3>PACOTE PREMIUM</h3>
                         <div class="plan-price">
                             <span class="currency">R$</span>
                             <span class="amount">799</span>
@@ -919,12 +964,12 @@
                     
                     <div class="plan-features">
                         <ul>
-                            <li><i class="fas fa-check"></i> Identidade Visual Premium</li>
+                            <li><i class="fas fa-check"></i> Solução Digital Sofisticada</li>
                             <li><i class="fas fa-check"></i> Site Institucional (15+ páginas)</li>
                             <li><i class="fas fa-check"></i> Suporte 24/7</li>
                             <li><i class="fas fa-check"></i> Todas as Redes Sociais</li>
                             <li><i class="fas fa-check"></i> Blog Integrado</li>
-                            <li><i class="fas fa-check"></i> E-commerce Básico</li>
+                            <li><i class="fas fa-check"></i> E-commerce Completo</li>
                             <li><i class="fas fa-check"></i> SEO Avançado</li>
                             <li><i class="fas fa-check"></i> Google Ads (Budget não incluso)</li>
                             <li><i class="fas fa-check"></i> Relatórios Personalizados</li>
@@ -932,14 +977,14 @@
                     </div>
                     
                     <div class="plan-footer">
-                        <a href="#solicitar-plano" class="btn btn-outline" data-plan="premium">Solicitar Plano</a>
+                        <a href="#solicitar-plano" class="btn btn-outline" data-plan="premium">Solicitar Pacote</a>
                     </div>
                 </div>
             </div>
             
             <div class="plans-cta">
-                <p>Não encontrou o plano ideal para o seu negócio?</p>
-                <a href="construtor.html" class="btn btn-primary">Construir Plano Personalizado</a>
+                <p>Não encontrou o pacote ideal para o seu negócio?</p>
+                <a href="construtor.html" class="btn btn-primary">Construir Pacote Personalizado</a>
             </div>
         </div>
     </section>
@@ -1259,7 +1304,7 @@
                 <p>Entre em contato conosco hoje mesmo e descubra como podemos ajudar a impulsionar o crescimento do seu negócio.</p>
                 <div class="cta-buttons">
                     <a href="orcamento.html" class="btn btn-secondary">Solicitar Orçamento</a>
-                    <a href="construtor.html" class="btn btn-outline">Construir Plano Personalizado</a>
+                    <a href="construtor.html" class="btn btn-outline">Construir Pacote Personalizado</a>
                 </div>
             </div>
         </div>
@@ -1270,7 +1315,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-col footer-logo">
-                    <img src="img/LOGO COLOR.png" alt="KOLIBRA SOLUTIONS">
+                    <img src="img/logo-new.png" alt="KOLIBRA SOLUTIONS">
                     <p>Soluções inovadoras para o crescimento do seu negócio.</p>
                 </div>
                 
@@ -1279,7 +1324,7 @@
                         <h4>Empresa</h4>
                         <ul>
                             <li><a href="index.html">Home</a></li>
-                            <li><a href="planos.html">Planos</a></li>
+                            <li><a href="planos.html">Pacotes</a></li>
                             <li><a href="portfolio.html">Portfólio</a></li>
                             <li><a href="orcamento.html">Orçamento</a></li>
                         </ul>
@@ -1300,16 +1345,16 @@
                         <ul>
                             <li><i class="fas fa-envelope"></i> <a href="mailto:kolibrasolutions@gmail.com">kolibrasolutions@gmail.com</a></li>
                             <li><i class="fas fa-phone"></i> <a href="tel:+5535999796570">(35) 99979-6570</a></li>
-                            <li><i class="fas fa-map-marker-alt"></i> <a href="#">Rua Julião Calixto de Abdala, N° 87, Quinta da Bela Vista, Muzambinho</a></li>
+                            <li><i class="fas fa-map-marker-alt"></i> <a href="#">Rua Julião Calixto de Abdala, 87, Quinta da Bela Vista, Muzambinho-MG</a></li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="footer-social">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/kolibrasolutions/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/kolibrasolutions/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://www.tiktok.com/@kolibrasolutions" target="_blank"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://wa.me/5535999796570" target="_blank"><i class="fab fa-whatsapp"></i></a>
                 </div>
             </div>
             
@@ -1420,9 +1465,8 @@
         });
     </script>
 <script src="js/menu-padronizado.js"></script>
-<!-- <script src="js/form-fix.js"></script> -->
-<!-- <script src="js/form-update.js"></script> -->
-<!-- <script src="js/emailjs-integration.js"></script> -->
-<script src="js/web3forms-handler.js"></script>
+<script src="js/form-fix.js"></script>
+<script src="js/form-update.js"></script>
+<script src="js/emailjs-integration.js"></script>
 </body>
 </html>

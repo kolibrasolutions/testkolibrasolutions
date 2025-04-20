@@ -3,11 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>KOLIBRA SOLUTIONS - A solução certa para crescer</title>
-    <meta name="description" content="Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grande impacto. Criação de sites, identidade visual e marketing digital.">
+    <title>KOLIBRA SOLUTIONS - A solução certa para crescer | Soluções Digitais Acessíveis</title>
+    <meta name="description" content="Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grande impacto. Criação de sites, identidade visual e marketing digital para transformar seu negócio.">
+    <meta name="keywords" content="Kolibra Solutions, soluções digitais, criação de sites, identidade visual, marketing digital, pequenos negócios, Muzambinho">
+    <meta name="author" content="Kolibra Solutions">
+    <meta name="robots" content="index, follow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://www.kolibrasolutions.com.br/">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.kolibrasolutions.com.br/">
+    <meta property="og:title" content="KOLIBRA SOLUTIONS - A solução certa para seu negócio">
+    <meta property="og:description" content="Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grandes resultados">
+    <meta property="og:image" content="https://www.kolibrasolutions.com.br/share-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Kolibra Solutions">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://www.kolibrasolutions.com.br/">
+    <meta property="twitter:title" content="KOLIBRA SOLUTIONS - A solução certa para seu negócio">
+    <meta property="twitter:description" content="Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grandes resultados">
+    <meta property="twitter:image" content="https://www.kolibrasolutions.com.br/share-image.jpg">
     
     <!-- Favicon -->
-    <link rel="shortcut icon" href="img/favicon.png" type="image/png">
+    <link rel="icon" type="image/ico" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="64x64" href="img/favicon-64x64.png">
+    <link rel="apple-touch-icon" sizes="128x128" href="img/favicon-128x128.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="img/favicon-152x152.png">
+    <link rel="apple-touch-icon" sizes="192x192" href="img/favicon-192x192.png">
+    
+    <!-- Preload de recursos críticos -->
+    <link rel="preload" href="img/logo-new.png" as="image">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,6 +51,66 @@
     
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Kolibra Solutions",
+      "alternateName": "KOLIBRA SOLUTIONS",
+      "url": "https://www.kolibrasolutions.com.br",
+      "logo": "https://www.kolibrasolutions.com.br/img/logo-new.png",
+      "description": "Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grande impacto. Criação de sites, identidade visual e marketing digital.",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Rua Julião Calixto de Abdala, 87, Quinta da Bela Vista",
+        "addressLocality": "Muzambinho",
+        "addressRegion": "MG",
+        "postalCode": "37890-000",
+        "addressCountry": "BR"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+5535999796570",
+        "contactType": "customer service",
+        "email": "kolibrasolutions@gmail.com",
+        "availableLanguage": "Portuguese"
+      },
+      "sameAs": [
+        "https://www.instagram.com/kolibrasolutions/",
+        "https://www.linkedin.com/company/kolibrasolutions/",
+        "https://www.tiktok.com/@kolibrasolutions"
+      ]
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "Kolibra Solutions",
+      "url": "https://www.kolibrasolutions.com.br",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://www.kolibrasolutions.com.br/search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://www.kolibrasolutions.com.br/"
+      }]
+    }
+    </script>
     
     <!-- CSS -->
     <style>
@@ -182,8 +277,10 @@
         }
         
         .logo img {
-            height: 70px; /* Aumentado de 50px para 70px */
+            height: 70px; /* Mantendo a altura original para não afetar a barra */
             width: auto;
+            transform: scale(1.8); /* Aumentado de 1.4 para 1.8 para um logo ainda maior */
+            transform-origin: left center; /* Mantém o alinhamento à esquerda */
         }
         
         .nav-menu {
@@ -730,168 +827,177 @@
     </style>
 </head>
 <body>
-    <!-- Navegação -->
-    <nav class="navbar">
-        <div class="container">
-            <a href="index.html" class="logo">
-                <img src="img/LOGO COLOR.png" alt="KOLIBRA SOLUTIONS">
-            </a>
-            
-            <ul class="nav-menu">
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="planos.html">Planos</a></li>
-                <li><a href="portfolio.html">Portfólio</a></li>
-                <li><a href="construtor.html" class="btn-nav">Construir Plano</a></li>
-            </ul>
-            
-            <div class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
+    <!-- Cabeçalho -->
+    <header>
+        <!-- Navegação -->
+        <nav class="navbar" aria-label="Navegação principal">
+            <div class="container">
+                <a href="index.html" class="logo" aria-label="Kolibra Solutions - Página inicial">
+                    <img src="img/logo-new.png" alt="KOLIBRA SOLUTIONS - Soluções digitais para pequenos negócios" width="150" height="50" style="height: 50px; width: auto; max-width: 100%;">
+                </a>
+                
+                <ul class="nav-menu" role="menubar">
+                    <li role="none"><a href="index.html" class="active" role="menuitem" aria-current="page">Home</a></li>
+                    <li role="none"><a href="portfolio.html" role="menuitem">Portfólio</a></li>
+                    <li role="none"><a href="construtor.html" class="btn-nav" role="menuitem">Construir Pacote</a></li>
+                </ul>
+                
+                <div class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false" aria-controls="nav-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
     
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Transforme seu negócio com soluções digitais acessíveis</h1>
-                <div class="hero-slogan">A solução certa para crescer</div>
-                <p>Criamos soluções digitais que impulsionam pequenos negócios com grande impacto. Identidade visual, sites e marketing digital ao alcance de todos.</p>
-                
-                <a href="segmentacao.html" class="cta-start">COMECE POR AQUI</a>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-check-circle"></i>
-                        </div>
-                        <div class="stat-value">100+</div>
-                        <div class="stat-label">Projetos Entregues</div>
-                    </div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" aria-labelledby="hero-heading">
+            <div class="container">
+                <div class="hero-content">
+                    <h1 id="hero-heading">Transforme seu negócio com soluções digitais acessíveis</h1>
+                    <div class="hero-slogan">A solução certa para crescer</div>
+                    <p>Criamos soluções digitais que impulsionam pequenos negócios com grande impacto. Identidade visual, sites e marketing digital ao alcance de todos.</p>
                     
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-value">98%</div>
-                        <div class="stat-label">Clientes Satisfeitos</div>
-                    </div>
+                    <a href="segmentacao.html" class="cta-start">COMECE POR AQUI</a>
                     
-                    <div class="stat-item">
-                        <div class="stat-icon">
-                            <i class="fas fa-star"></i>
+                    <div class="hero-stats">
+                        <div class="stat-item" itemscope itemtype="https://schema.org/AggregateRating">
+                            <div class="stat-icon">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-value" id="projetos-count" itemprop="ratingCount">1</div>
+                            <div class="stat-label">Projetos Entregues</div>
                         </div>
-                        <div class="stat-value">5.0</div>
-                        <div class="stat-label">Avaliação Média</div>
+                        
+                        <div class="stat-item">
+                            <div class="stat-icon">
+                                <i class="fas fa-users" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-value" id="satisfacao-rate">100%</div>
+                            <div class="stat-label">Clientes Satisfeitos</div>
+                        </div>
+                        
+                        <div class="stat-item" itemscope itemtype="https://schema.org/AggregateRating">
+                            <meta itemprop="itemReviewed" content="Kolibra Solutions">
+                            <div class="stat-icon">
+                                <i class="fas fa-star" aria-hidden="true"></i>
+                            </div>
+                            <div class="stat-value" id="avaliacao-media" itemprop="ratingValue">5.0</div>
+                            <div class="stat-label">Avaliação Média</div>
+                            <meta itemprop="bestRating" content="5">
+                            <meta itemprop="worstRating" content="1">
+                        </div>
                     </div>
                 </div>
+                
+                <!-- Curva decorativa na parte inferior -->
+                <svg class="hero-curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+                    <path fill="#ffffff" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
+                </svg>
             </div>
-            
-            <!-- Curva decorativa na parte inferior -->
-            <svg class="hero-curve" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 100" preserveAspectRatio="none">
-                <path fill="#ffffff" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,100L1360,100C1280,100,1120,100,960,100C800,100,640,100,480,100C320,100,160,100,80,100L0,100Z"></path>
-            </svg>
-        </div>
-    </section>
+        </section>
+        
+        <!-- História -->
+        <section class="story" id="historia" aria-labelledby="historia-heading">
+            <div class="container">
+                <div class="story-header">
+                    <h2 id="historia-heading">Nossa História</h2>
+                </div>
+                
+                <div class="timeline" itemscope itemtype="https://schema.org/AboutPage">
+                    <article class="timeline-item">
+                        <div class="timeline-date">Aos 16 anos</div>
+                        <div class="timeline-content" itemprop="mainContentOfPage">
+                            <h3 class="timeline-title">Primeiros Passos</h3>
+                            <p class="timeline-description">O fundador da KOLIBRA SOLUTIONS criou seu primeiro logo, mas esbarrou na falta de recursos tecnológicos adequados.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="timeline-item">
+                        <div class="timeline-date">Dez anos depois</div>
+                        <div class="timeline-content" itemprop="mainContentOfPage">
+                            <h3 class="timeline-title">Experiência Acumulada</h3>
+                            <p class="timeline-description">Acumulando experiência em design e negócios, ele percebeu que muitos empreendedores tinham o mesmo dilema: ideias ótimas travadas por falta de ferramentas.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="timeline-item">
+                        <div class="timeline-date">Fundação</div>
+                        <div class="timeline-content" itemprop="mainContentOfPage">
+                            <h3 class="timeline-title">Nascimento da KOLIBRA SOLUTIONS</h3>
+                            <p class="timeline-description">Com a missão de democratizar o acesso a soluções modernas, nasceu a startup. Nenhum empreendedor, tão pequeno seja, precisa mais parar por falta de branding ou tecnologia.</p>
+                        </div>
+                    </article>
+                    
+                    <article class="timeline-item">
+                        <div class="timeline-date">Hoje</div>
+                        <div class="timeline-content" itemprop="mainContentOfPage">
+                            <h3 class="timeline-title">Propósito</h3>
+                            <p class="timeline-description">Hoje, cada projeto entregue lembra a história inicial – transformamos limitações em oportunidades e tiramos empresas da invisibilidade digital.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
     
-    <!-- História -->
-    <section class="story" id="historia">
-        <div class="container">
-            <div class="story-header">
-                <h2>Nossa História</h2>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-date">Aos 16 anos</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Primeiros Passos</h3>
-                        <p class="timeline-description">O fundador da KOLIBRA SOLUTIONS criou seu primeiro logo, mas esbarrou na falta de recursos tecnológicos adequados.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Dez anos depois</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Experiência Acumulada</h3>
-                        <p class="timeline-description">Acumulando experiência em design e negócios, ele percebeu que muitos empreendedores tinham o mesmo dilema: ideias ótimas travadas por falta de ferramentas.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Fundação</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Nascimento da KOLIBRA SOLUTIONS</h3>
-                        <p class="timeline-description">Com a missão de democratizar o acesso a soluções modernas, nasceu a startup. Nenhum empreendedor, tão pequeno seja, precisa mais parar por falta de branding ou tecnologia.</p>
-                    </div>
-                </div>
-                
-                <div class="timeline-item">
-                    <div class="timeline-date">Hoje</div>
-                    <div class="timeline-content">
-                        <h3 class="timeline-title">Propósito</h3>
-                        <p class="timeline-description">Hoje, cada projeto entregue lembra a história inicial – transformamos limitações em oportunidades e tiramos empresas da invisibilidade digital.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Rodapé -->
+    <footer class="footer" itemscope itemtype="https://schema.org/WPFooter">
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
                     <div class="footer-logo">
-                        <img src="img/LOGO COLOR.png" alt="KOLIBRA SOLUTIONS">
+                        <img src="img/logo-new.png" alt="KOLIBRA SOLUTIONS - Logo" width="150" height="60">
                     </div>
                     <p>Transformamos pequenos negócios através de soluções digitais acessíveis e de alto impacto. Nossa missão é democratizar o acesso à tecnologia e ao design de qualidade.</p>
                     <div class="footer-social">
-                        <a href="https://facebook.com/kolibrasolutions" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://instagram.com/kolibrasolutions" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://linkedin.com/company/kolibrasolutions" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://wa.me/5511912345678" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/kolibrasolutions/" target="_blank" rel="noopener" aria-label="Instagram da Kolibra Solutions"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/company/kolibrasolutions/" target="_blank" rel="noopener" aria-label="LinkedIn da Kolibra Solutions"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+                        <a href="https://www.tiktok.com/@kolibrasolutions" target="_blank" rel="noopener" aria-label="TikTok da Kolibra Solutions"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+                        <a href="https://wa.me/5535999796570" target="_blank" rel="noopener" aria-label="WhatsApp da Kolibra Solutions"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
                     </div>
                 </div>
                 
-                <div class="footer-links">
+                <nav class="footer-links" aria-label="Links do rodapé">
                     <h3 class="footer-title">Links Rápidos</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li><a href="planos.html">Planos</a></li>
                         <li><a href="portfolio.html">Portfólio</a></li>
-                        <li><a href="construtor.html">Construtor de Planos</a></li>
+                        <li><a href="construtor.html">Construtor de Pacotes</a></li>
                         <li><a href="segmentacao.html">Comece por Aqui</a></li>
                     </ul>
-                </div>
+                </nav>
                 
-                <div class="footer-contact">
+                <div class="footer-contact" itemscope itemtype="https://schema.org/Organization">
                     <h3 class="footer-title">Contato</h3>
                     <ul>
                         <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Rua Julião Calixto de Abdala, N° 87, Quinta da Bela Vista, Muzambinho</span>
+                            <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
+                            <span itemprop="address" itemscope itemtype="https://schema.org/PostalAddress">
+                                <span itemprop="streetAddress">Rua Julião Calixto de Abdala, 87, Quinta da Bela Vista</span>, 
+                                <span itemprop="addressLocality">Muzambinho</span>-<span itemprop="addressRegion">MG</span>
+                            </span>
                         </li>
                         <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <span>(35) 99979-6570</span>
+                            <i class="fas fa-phone-alt" aria-hidden="true"></i>
+                            <span><a href="tel:+5535999796570" itemprop="telephone" style="color: #ffffff;">(35) 99979-6570</a></span>
                         </li>
                         <li>
-                            <i class="fas fa-envelope"></i>
-                            <span>kolibrasolutions@gmail.com</span>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
+                            <span><a href="mailto:kolibrasolutions@gmail.com" itemprop="email" style="color: #ffffff;">kolibrasolutions@gmail.com</a></span>
                         </li>
                         <li>
-                            <i class="fas fa-clock"></i>
-                            <span>Segunda a Sexta: 8h às 18h</span>
+                            <i class="fas fa-clock" aria-hidden="true"></i>
+                            <span itemprop="openingHours" content="Mo-Fr 08:00-12:00">Segunda a Sexta: 8h às 12h</span>
                         </li>
                     </ul>
                 </div>
             </div>
             
             <div class="footer-bottom">
-                <p>&copy; 2025 KOLIBRA SOLUTIONS. Todos os direitos reservados. CNPJ: 45.678.901/0001-23</p>
+                <p>&copy; <span itemprop="copyrightYear">2025</span> <span itemprop="copyrightHolder" itemscope itemtype="https://schema.org/Organization"><span itemprop="name">KOLIBRA SOLUTIONS</span></span>. Todos os direitos reservados. <!-- CNPJ: 45.678.901/0001-23 --></p>
             </div>
         </div>
     </footer>
@@ -906,14 +1012,19 @@
             navToggle.addEventListener('click', function() {
                 navToggle.classList.toggle('active');
                 navMenu.classList.toggle('active');
+                
+                // Acessibilidade - atualiza o estado expandido
+                const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+                navToggle.setAttribute('aria-expanded', !isExpanded);
             });
         });
     </script>
     <!-- Menu Padronizado -->
     <script src="js/menu-padronizado.js"></script>
-<!-- <script src="js/form-fix.js"></script> -->
-<!-- <script src="js/form-update.js"></script> -->
-<!-- <script src="js/emailjs-integration.js"></script> -->
-<script src="js/web3forms-handler.js"></script>
+    <script src="js/form-fix.js"></script>
+    <script src="js/form-update.js"></script>
+    <script src="js/emailjs-integration.js"></script>
+    <!-- Script para atualização das estatísticas -->
+    <script src="js/stats-updater.js"></script>
 </body>
 </html>

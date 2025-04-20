@@ -3,15 +3,14 @@ const menuHTML = `
 <nav class="navbar">
     <div class="container">
         <a href="index.html" class="logo">
-            <img src="img/LOGO COLOR.png" alt="KOLIBRA SOLUTIONS">
+            <img src="img/logo-new.png" alt="KOLIBRA SOLUTIONS" style="height: 50px; width: auto; max-width: 100%;">
         </a>
         
         <ul class="nav-menu">
             <li><a href="index.html" id="menu-home">Home</a></li>
-            <li><a href="planos.html" id="menu-planos">Planos</a></li>
             <li><a href="portfolio.html" id="menu-portfolio">Portfólio</a></li>
-            <li><a href="orcamento.html" id="menu-orcamento">Orçamento</a></li>
-            <li><a href="construtor.html" id="menu-construtor" class="btn-nav">Construir Plano</a></li>
+            <li><a href="blog/index.html" id="menu-blog">Blog</a></li>
+            <li><a href="construtor.html" id="menu-construtor" class="btn-nav">Construir Pacote</a></li>
         </ul>
         
         <div class="nav-toggle" id="navToggle">
@@ -38,18 +37,14 @@ function inserirMenuPadronizado() {
         case 'index.html':
             document.getElementById('menu-home').classList.add('active');
             break;
-        case 'planos.html':
-            document.getElementById('menu-planos').classList.add('active');
-            break;
         case 'portfolio.html':
             document.getElementById('menu-portfolio').classList.add('active');
-            break;
-        case 'orcamento.html':
-            document.getElementById('menu-orcamento').classList.add('active');
             break;
         case 'construtor.html':
             document.getElementById('menu-construtor').classList.add('active');
             break;
+        case 'planos.html':
+        case 'orcamento.html':
         case 'segmentacao.html':
         case 'diagnostico.html':
         case 'selecao-kit.html':
@@ -58,7 +53,7 @@ function inserirMenuPadronizado() {
         case 'formulario-problemas.html':
         case 'quiz.html':
         case 'obrigado.html':
-            // Estas páginas não têm item de menu ativo específico
+            // Estas páginas não têm item de menu ativo específico ou foram removidas da navegação
             break;
     }
 }
@@ -131,9 +126,23 @@ function adicionarBreadcrumbs() {
     }
 }
 
+// Função para adicionar funcionalidade ao botão hamburguer
+function adicionarEventoMenuMobile() {
+    const navToggle = document.getElementById('navToggle');
+    const navMenu = document.querySelector('.nav-menu');
+    
+    if (navToggle && navMenu) {
+        navToggle.addEventListener('click', function() {
+            navToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+    }
+}
+
 // Executar as funções quando o DOM estiver carregado
 document.addEventListener('DOMContentLoaded', function() {
     inserirMenuPadronizado();
     corrigirLinks();
     adicionarBreadcrumbs();
+    adicionarEventoMenuMobile();
 });
