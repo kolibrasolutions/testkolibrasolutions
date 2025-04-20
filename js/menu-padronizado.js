@@ -164,14 +164,27 @@ function removerFaixasBrancasMobile() {
     }
 }
 
-// Função para incluir o script de redirecionamento de formulários para WhatsApp
-function incluirScriptFormWhatsapp() {
+// Função para incluir os scripts de formulário
+function incluirScriptsFormulario() {
     // Verifica se há formulários na página
     if (document.querySelector('form')) {
-        // Adiciona o script form-to-whatsapp.js dinamicamente
-        const script = document.createElement('script');
-        script.src = 'js/form-to-whatsapp.js';
-        document.body.appendChild(script);
+        // Primeiro adiciona o script para desativar o envio por e-mail
+        const disableEmailScript = document.createElement('script');
+        disableEmailScript.src = 'js/disable-email-forms.js';
+        document.head.appendChild(disableEmailScript);
+        
+        // Depois adiciona o script para redirecionar para WhatsApp
+        // Pequeno atraso para garantir que o script de desativação seja executado primeiro
+        setTimeout(function() {
+            const whatsappScript = document.createElement('script');
+            whatsappScript.src = 'js/form-to-whatsapp.js';
+            document.body.appendChild(whatsappScript);
+            
+            // Por último, adiciona o script de teste para indicadores visuais
+            const testScript = document.createElement('script');
+            testScript.src = 'js/form-test.js';
+            document.body.appendChild(testScript);
+        }, 100);
     }
 }
 
@@ -182,5 +195,5 @@ document.addEventListener('DOMContentLoaded', function() {
     adicionarBreadcrumbs();
     adicionarEventoMenuMobile();
     removerFaixasBrancasMobile(); // Adiciona a função para remover faixas brancas
-    incluirScriptFormWhatsapp(); // Adiciona a função para incluir o script de redirecionamento de formulários para WhatsApp
+    incluirScriptsFormulario(); // Adiciona a função para incluir os scripts de formulário
 });

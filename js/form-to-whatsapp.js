@@ -1,23 +1,30 @@
 /**
  * Script para redirecionar todos os formulários para o WhatsApp
  * Implementa a funcionalidade de envio para WhatsApp em todos os formulários do site
+ * e impede o envio por e-mail
  */
 document.addEventListener('DOMContentLoaded', function() {
+    // Remove todos os event listeners existentes dos formulários
+    function removeAllEventListeners(element) {
+        // Cria um clone do elemento sem os event listeners
+        const clone = element.cloneNode(true);
+        // Substitui o elemento original pelo clone
+        element.parentNode.replaceChild(clone, element);
+        return clone;
+    }
+    
     // Procura por todos os formulários na página
     const forms = document.querySelectorAll('form');
     
-    forms.forEach(function(form) {
-        // Verifica se o formulário já tem um botão de WhatsApp ou já está configurado para WhatsApp
-        const hasWhatsAppButton = form.querySelector('button[type="submit"]')?.textContent.includes('WhatsApp');
-        const hasWhatsAppListener = form.getAttribute('data-whatsapp-enabled') === 'true';
+    forms.forEach(function(originalForm) {
+        // Remove todos os event listeners existentes
+        const form = removeAllEventListeners(originalForm);
         
-        // Só adiciona o evento se o formulário não tiver um botão de WhatsApp ou não estiver configurado
-        if (!hasWhatsAppButton && !hasWhatsAppListener) {
-            // Marca o formulário como configurado para WhatsApp
-            form.setAttribute('data-whatsapp-enabled', 'true');
-            
-            // Adiciona um evento de submit para cada formulário
-            form.addEventListener('submit', function(e) {
+        // Marca o formulário como configurado para WhatsApp
+        form.setAttribute('data-whatsapp-enabled', 'true');
+        
+        // Adiciona um evento de submit para cada formulário
+        form.addEventListener('submit', function(e) {
             // Previne o comportamento padrão de envio do formulário
             e.preventDefault();
             
