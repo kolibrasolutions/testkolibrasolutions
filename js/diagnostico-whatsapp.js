@@ -295,8 +295,47 @@ document.addEventListener('DOMContentLoaded', function() {
                 return false;
             }
             
+            // Verificar se há problemas selecionados no localStorage
+            const savedProblems = localStorage.getItem('selected_problems');
+            console.log('Problemas salvos no localStorage antes do envio:', savedProblems);
+            
             // Obter os dados do formulário
             const formData = getFormData();
+            
+            // Verificação adicional para garantir que os problemas sejam incluídos
+            if (formData.problems.length === 0 && savedProblems) {
+                try {
+                    const problems = JSON.parse(savedProblems);
+                    console.log('Recuperando problemas do localStorage para o envio:', problems.length);
+                    
+                    // Adicionar problemas do localStorage ao formData
+                    problems.forEach(problem => {
+                        formData.problems.push(problem);
+                        
+                        // Recuperar a prioridade do localStorage
+                        const priority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
+                        let priorityText = '';
+                        
+                        if (priority === 'high') {
+                            priorityText = 'Alta Prioridade';
+                        } else if (priority === 'low') {
+                            priorityText = 'Baixa Prioridade';
+                        } else {
+                            priorityText = 'Média Prioridade';
+                        }
+                        
+                        formData.priorities.push({
+                            problem: problem.label,
+                            priority: priority,
+                            priorityText: priorityText
+                        });
+                    });
+                } catch (e) {
+                    console.error('Erro ao recuperar problemas do localStorage para o envio:', e);
+                }
+            }
+            
+            console.log('Dados do formulário para envio:', JSON.stringify(formData));
             
             // Formatar a mensagem para o WhatsApp
             const whatsappMessage = formatWhatsAppMessage(formData);
@@ -392,6 +431,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Formatar a mensagem para o WhatsApp
     function formatWhatsAppMessage(data) {
+        console.log('Formatando mensagem para WhatsApp com dados:', JSON.stringify(data));
+        
         let message = `*DIAGNÓSTICO DE PROBLEMAS - KOLIBRA SOLUTIONS*\n\n`;
         
         // Informações da empresa
@@ -414,13 +455,51 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Problemas e prioridades
         message += `*Problemas Prioritários:*\n`;
-        if (data.priorities.length > 0) {
+        
+        // Verificar se há problemas selecionados no localStorage como fallback
+        if (data.priorities.length === 0) {
+            console.log('Nenhuma prioridade encontrada, verificando localStorage');
+            
+            // Tentar recuperar problemas do localStorage
+            const savedProblems = localStorage.getItem('selected_problems');
+            if (savedProblems) {
+                try {
+                    const problems = JSON.parse(savedProblems);
+                    console.log('Problemas recuperados do localStorage:', problems.length);
+                    
+                    if (problems && problems.length > 0) {
+                        problems.forEach((problem, index) => {
+                            // Recuperar a prioridade do localStorage
+                            const priority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
+                            let priorityText = '';
+                            
+                            if (priority === 'high') {
+                                priorityText = 'Alta Prioridade';
+                            } else if (priority === 'low') {
+                                priorityText = 'Baixa Prioridade';
+                            } else {
+                                priorityText = 'Média Prioridade';
+                            }
+                            
+                            message += `${index + 1}. ${problem.label} - ${priorityText}\n`;
+                        });
+                    } else {
+                        message += `Nenhum problema selecionado.\n`;
+                    }
+                } catch (e) {
+                    console.error('Erro ao recuperar problemas do localStorage:', e);
+                    message += `Nenhum problema selecionado.\n`;
+                }
+            } else {
+                message += `Nenhum problema selecionado.\n`;
+            }
+        } else {
+            // Usar as prioridades já coletadas
             data.priorities.forEach((item, index) => {
                 message += `${index + 1}. ${item.problem} - ${item.priorityText}\n`;
             });
-        } else {
-            message += `Nenhum problema selecionado.\n`;
         }
+        
         message += `\n`;
         
         // Outros problemas
@@ -430,6 +509,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         message += `Enviado via Formulário de Diagnóstico - KOLIBRA SOLUTIONS`;
         
+        console.log('Mensagem formatada:', message);
         return encodeURIComponent(message);
     }
     
