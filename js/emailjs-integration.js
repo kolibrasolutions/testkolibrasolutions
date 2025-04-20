@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     script.onload = function() {
         // Inicializar EmailJS com a chave pública real
-        emailjs.init("Dn5Wy_Nh9Tn-Gg_Vc");
+        emailjs.init("N6NdKySx3h9Ocrnth");
         
         // Verificar se estamos em uma página com formulário
         const forms = document.querySelectorAll('form');
