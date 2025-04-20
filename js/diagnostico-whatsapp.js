@@ -1,6 +1,198 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.querySelector('form');
+    // Navegação entre seções
+    const sections = document.querySelectorAll('.section');
+    const progressBar = document.querySelector('.progress-bar');
+    const nextButtons = document.querySelectorAll('.next-btn');
+    const prevButtons = document.querySelectorAll('.prev-btn');
+    const sectionSteps = document.querySelectorAll('.section-step');
     
+    // Função para mostrar uma seção específica
+    function showSection(sectionNumber) {
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+        
+        document.getElementById(`section${sectionNumber}`).classList.add('active');
+        
+        // Atualizar barra de progresso
+        const progress = (sectionNumber / sections.length) * 100;
+        progressBar.style.width = `${progress}%`;
+        progressBar.setAttribute('aria-valuenow', progress);
+        
+        // Atualizar indicador de seção
+        sectionSteps.forEach(step => {
+            const stepNumber = parseInt(step.getAttribute('data-step'));
+            step.classList.remove('active', 'completed');
+            
+            if (stepNumber === sectionNumber) {
+                step.classList.add('active');
+            } else if (stepNumber < sectionNumber) {
+                step.classList.add('completed');
+            }
+        });
+        
+        // Rolar para o topo do formulário
+        document.querySelector('.form-container').scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Botões de próximo
+    nextButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const nextSection = parseInt(this.getAttribute('data-next'));
+            
+            // Validar campos da seção atual antes de avançar
+            const currentSection = parseInt(this.closest('.section').id.replace('section', ''));
+            if (validateSection(currentSection)) {
+                
+                // Se estiver na seção 2 (problemas), gerar itens de prioridade
+                if (currentSection === 2) {
+                    generatePriorityItems();
+                }
+                
+                // Se estiver na seção 3 (priorização), gerar resumo
+                if (currentSection === 3) {
+                    generateSummary();
+                }
+                
+                showSection(nextSection);
+            }
+        });
+    });
+    
+    // Botões de anterior
+    prevButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const prevSection = parseInt(this.getAttribute('data-prev'));
+            showSection(prevSection);
+        });
+    });
+    
+    // Validação de seções
+    function validateSection(sectionNumber) {
+        const section = document.getElementById(`section${sectionNumber}`);
+        const requiredFields = section.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value) {
+                field.classList.add('is-invalid');
+                isValid = false;
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        
+        // Validações específicas por seção
+        if (sectionNumber === 2) {
+            const selectedProblems = section.querySelectorAll('input[type="checkbox"]:checked');
+            if (selectedProblems.length === 0) {
+                alert('Selecione pelo menos um problema para continuar.');
+                isValid = false;
+            }
+        }
+        
+        return isValid;
+    }
+    
+    // Gerar itens de prioridade com base nos problemas selecionados
+    function generatePriorityItems() {
+        const priorityContainer = document.getElementById('priorityContainer');
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
+        
+        if (checkboxes.length === 0) {
+            priorityContainer.innerHTML = `
+                <div class="text-center py-4">
+                    <p>Selecione pelo menos um problema na etapa anterior.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        priorityContainer.innerHTML = '';
+        
+        // Criar um array para armazenar os problemas
+        let problems = [];
+        
+        // Coletar todos os problemas selecionados
+        checkboxes.forEach((checkbox, index) => {
+            const label = checkbox.nextElementSibling.textContent.trim();
+            const value = checkbox.value;
+            problems.push({
+                index: index + 1,
+                label: label,
+                value: value
+            });
+        });
+        
+        // Adicionar cada problema ao container
+        problems.forEach((problem) => {
+            const problemItem = document.createElement('div');
+            problemItem.className = 'problem-item';
+            problemItem.innerHTML = `
+                <div>
+                    <strong>${problem.index}. ${problem.label}</strong>
+                </div>
+                <div>
+                    <select class="form-select priority-select" name="priority_${problem.value}" id="priority_${problem.value}">
+                        <option value="high">Alta Prioridade</option>
+                        <option value="medium" selected>Média Prioridade</option>
+                        <option value="low">Baixa Prioridade</option>
+                    </select>
+                </div>
+            `;
+            
+            priorityContainer.appendChild(problemItem);
+        });
+        
+        // Adicionar evento de mudança para cada select de prioridade
+        document.querySelectorAll('.priority-select').forEach(select => {
+            select.addEventListener('change', function() {
+                console.log('Prioridade alterada:', this.id, this.value);
+                // Armazenar a prioridade selecionada
+                localStorage.setItem(this.id, this.value);
+            });
+        });
+    }
+    
+    // Gerar resumo do diagnóstico
+    function generateSummary() {
+        const summaryBusiness = document.getElementById('summary_business');
+        const summaryContact = document.getElementById('summary_contact');
+        const summaryProblems = document.getElementById('summary_problems');
+        
+        // Preencher informações da empresa
+        const businessName = document.getElementById('businessName').value;
+        const businessType = document.getElementById('businessType').value;
+        summaryBusiness.textContent = `${businessName} (${businessType})`;
+        
+        // Preencher informações de contato
+        const contactName = document.getElementById('contactName').value;
+        const contactEmail = document.getElementById('contactEmail').value;
+        const contactPhone = document.getElementById('contactPhone').value;
+        summaryContact.textContent = `${contactName} - ${contactEmail} - ${contactPhone}`;
+        
+        // Preencher problemas prioritários
+        summaryProblems.innerHTML = '';
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
+        
+        checkboxes.forEach(checkbox => {
+            const label = checkbox.nextElementSibling.textContent.trim();
+            const value = checkbox.value;
+            const prioritySelect = document.getElementById(`priority_${value}`);
+            
+            if (prioritySelect) {
+                const priority = prioritySelect.value;
+                const priorityText = prioritySelect.options[prioritySelect.selectedIndex].text;
+                
+                const li = document.createElement('li');
+                li.innerHTML = `${label} - <span class="badge bg-${priority === 'high' ? 'danger' : priority === 'medium' ? 'warning' : 'success'}">${priorityText}</span>`;
+                summaryProblems.appendChild(li);
+            }
+        });
+    }
+    
+    // Configurar o formulário para enviar para WhatsApp
+    const form = document.getElementById('diagnosticForm');
     if (form) {
         form.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -21,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
-    // Validar o formulário
+    // Validar o formulário completo
     function validateForm() {
         const requiredFields = form.querySelectorAll('[required]');
         let isValid = true;
