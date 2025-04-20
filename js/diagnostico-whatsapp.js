@@ -44,8 +44,29 @@ document.addEventListener('DOMContentLoaded', function() {
             const currentSection = parseInt(this.closest('.section').id.replace('section', ''));
             if (validateSection(currentSection)) {
                 
-                // Se estiver na seção 2 (problemas), gerar itens de prioridade
+                // Se estiver na seção 2 (problemas), salvar problemas selecionados e gerar itens de prioridade
                 if (currentSection === 2) {
+                    // Salvar problemas selecionados no localStorage
+                    const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
+                    let problems = [];
+                    
+                    checkboxes.forEach((checkbox, index) => {
+                        const label = checkbox.nextElementSibling.textContent.trim();
+                        const value = checkbox.value;
+                        problems.push({
+                            index: index + 1,
+                            label: label,
+                            value: value
+                        });
+                    });
+                    
+                    // Salvar no localStorage para recuperação futura
+                    if (problems.length > 0) {
+                        localStorage.setItem('selected_problems', JSON.stringify(problems));
+                        console.log('Problemas salvos no localStorage:', problems.length);
+                    }
+                    
+                    // Gerar itens de prioridade
                     generatePriorityItems();
                 }
                 
@@ -54,7 +75,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     generateSummary();
                 }
                 
-                showSection(nextSection);
+                // Pequeno atraso para garantir que o DOM seja atualizado
+                setTimeout(() => {
+                    showSection(nextSection);
+                    
+                    // Se estiver indo para a seção 3 (priorização), verificar se os itens foram gerados
+                    if (nextSection === 3) {
+                        const priorityContainer = document.getElementById('priorityContainer');
+                        if (priorityContainer && priorityContainer.children.length <= 1) {
+                            console.log('Forçando regeneração dos itens de prioridade');
+                            generatePriorityItems();
+                        }
+                    }
+                }, 100);
             }
         });
     });
@@ -97,9 +130,31 @@ document.addEventListener('DOMContentLoaded', function() {
     // Gerar itens de prioridade com base nos problemas selecionados
     function generatePriorityItems() {
         const priorityContainer = document.getElementById('priorityContainer');
-        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
         
-        if (checkboxes.length === 0) {
+        // Forçar uma nova busca por checkboxes marcados
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="problems[]"]:checked');
+        console.log('Problemas selecionados:', checkboxes.length);
+        
+        // Verificação mais robusta para problemas selecionados
+        if (!checkboxes || checkboxes.length === 0) {
+            console.log('Nenhum problema selecionado, verificando localStorage');
+            
+            // Tentar recuperar problemas do localStorage como fallback
+            const savedProblems = localStorage.getItem('selected_problems');
+            if (savedProblems) {
+                try {
+                    const problems = JSON.parse(savedProblems);
+                    if (problems && problems.length > 0) {
+                        console.log('Problemas recuperados do localStorage:', problems.length);
+                        renderPriorityItems(problems);
+                        return;
+                    }
+                } catch (e) {
+                    console.error('Erro ao recuperar problemas do localStorage:', e);
+                }
+            }
+            
+            // Se não encontrar problemas no localStorage, mostrar mensagem
             priorityContainer.innerHTML = `
                 <div class="text-center py-4">
                     <p>Selecione pelo menos um problema na etapa anterior.</p>
@@ -108,6 +163,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         
+        // Limpar o container
         priorityContainer.innerHTML = '';
         
         // Criar um array para armazenar os problemas
@@ -124,10 +180,27 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
+        // Salvar problemas no localStorage para recuperação futura
+        localStorage.setItem('selected_problems', JSON.stringify(problems));
+        
+        // Renderizar os itens de prioridade
+        renderPriorityItems(problems);
+    }
+    
+    // Função auxiliar para renderizar os itens de prioridade
+    function renderPriorityItems(problems) {
+        const priorityContainer = document.getElementById('priorityContainer');
+        priorityContainer.innerHTML = '';
+        
         // Adicionar cada problema ao container
-        problems.forEach((problem) => {
+        problems.forEach((problem, index) => {
             const problemItem = document.createElement('div');
             problemItem.className = 'problem-item';
+            
+            // Garantir que o problema tenha um índice
+            if (!problem.index) {
+                problem.index = index + 1;
+            }
             
             // Recuperar a prioridade salva anteriormente ou usar o valor padrão
             const savedPriority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
@@ -363,7 +436,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Redirecionar para o WhatsApp
     function redirectToWhatsApp(message) {
         // Número de telefone para onde a mensagem será enviada (formato internacional)
-        const phoneNumber = '5511999999999'; // Substitua pelo número correto
+        const phoneNumber = '5535999796570'; // Número atualizado conforme solicitado
         
         // URL do WhatsApp
         const whatsappURL = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${message}`;
