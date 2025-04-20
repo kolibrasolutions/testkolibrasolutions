@@ -128,15 +128,19 @@ document.addEventListener('DOMContentLoaded', function() {
         problems.forEach((problem) => {
             const problemItem = document.createElement('div');
             problemItem.className = 'problem-item';
+            
+            // Recuperar a prioridade salva anteriormente ou usar o valor padrão
+            const savedPriority = localStorage.getItem(`priority_${problem.value}`) || 'medium';
+            
             problemItem.innerHTML = `
                 <div>
                     <strong>${problem.index}. ${problem.label}</strong>
                 </div>
                 <div>
                     <select class="form-select priority-select" name="priority_${problem.value}" id="priority_${problem.value}">
-                        <option value="high">Alta Prioridade</option>
-                        <option value="medium" selected>Média Prioridade</option>
-                        <option value="low">Baixa Prioridade</option>
+                        <option value="high" ${savedPriority === 'high' ? 'selected' : ''}>Alta Prioridade</option>
+                        <option value="medium" ${savedPriority === 'medium' ? 'selected' : ''}>Média Prioridade</option>
+                        <option value="low" ${savedPriority === 'low' ? 'selected' : ''}>Baixa Prioridade</option>
                     </select>
                 </div>
             `;
@@ -178,16 +182,32 @@ document.addEventListener('DOMContentLoaded', function() {
         checkboxes.forEach(checkbox => {
             const label = checkbox.nextElementSibling.textContent.trim();
             const value = checkbox.value;
-            const prioritySelect = document.getElementById(`priority_${value}`);
             
-            if (prioritySelect) {
-                const priority = prioritySelect.value;
-                const priorityText = prioritySelect.options[prioritySelect.selectedIndex].text;
-                
-                const li = document.createElement('li');
-                li.innerHTML = `${label} - <span class="badge bg-${priority === 'high' ? 'danger' : priority === 'medium' ? 'warning' : 'success'}">${priorityText}</span>`;
-                summaryProblems.appendChild(li);
+            // Verificar primeiro no localStorage para garantir que estamos usando o valor mais atualizado
+            let priority = localStorage.getItem(`priority_${value}`);
+            let priorityText = '';
+            
+            // Se não encontrar no localStorage, tentar obter do select
+            if (!priority && document.getElementById(`priority_${value}`)) {
+                const prioritySelect = document.getElementById(`priority_${value}`);
+                priority = prioritySelect.value;
+                priorityText = prioritySelect.options[prioritySelect.selectedIndex].text;
+            } else {
+                // Determinar o texto da prioridade com base no valor
+                if (priority === 'high') {
+                    priorityText = 'Alta Prioridade';
+                } else if (priority === 'low') {
+                    priorityText = 'Baixa Prioridade';
+                } else {
+                    // Valor padrão é médio
+                    priority = 'medium';
+                    priorityText = 'Média Prioridade';
+                }
             }
+            
+            const li = document.createElement('li');
+            li.innerHTML = `${label} - <span class="badge bg-${priority === 'high' ? 'danger' : priority === 'medium' ? 'warning' : 'success'}">${priorityText}</span>`;
+            summaryProblems.appendChild(li);
         });
     }
     
@@ -265,16 +285,33 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Obter prioridades
         formData.problems.forEach(problem => {
-            const prioritySelect = document.getElementById(`priority_${problem.value}`);
-            if (prioritySelect) {
-                const priority = prioritySelect.value;
-                const priorityText = prioritySelect.options[prioritySelect.selectedIndex].text;
-                formData.priorities.push({
-                    problem: problem.label,
-                    priority: priority,
-                    priorityText: priorityText
-                });
+            // Verificar primeiro no localStorage para garantir que estamos usando o valor mais atualizado
+            let priority = localStorage.getItem(`priority_${problem.value}`);
+            let priorityText = '';
+            
+            // Se não encontrar no localStorage, tentar obter do select
+            if (!priority && document.getElementById(`priority_${problem.value}`)) {
+                const prioritySelect = document.getElementById(`priority_${problem.value}`);
+                priority = prioritySelect.value;
+                priorityText = prioritySelect.options[prioritySelect.selectedIndex].text;
+            } else {
+                // Determinar o texto da prioridade com base no valor
+                if (priority === 'high') {
+                    priorityText = 'Alta Prioridade';
+                } else if (priority === 'low') {
+                    priorityText = 'Baixa Prioridade';
+                } else {
+                    // Valor padrão é médio
+                    priority = 'medium';
+                    priorityText = 'Média Prioridade';
+                }
             }
+            
+            formData.priorities.push({
+                problem: problem.label,
+                priority: priority,
+                priorityText: priorityText
+            });
         });
         
         return formData;
