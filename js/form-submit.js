@@ -33,7 +33,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 formData.supportPeriod = supportPeriodText;
             }
             
-            // Envia o email usando EmailJS
+            // Mostrar indicador de carregamento
+            const submitBtn = planBuilderForm.querySelector('button[type="submit"]');
+            const originalText = submitBtn ? submitBtn.textContent : "Enviar";
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Enviando...";
+            }
+            
+            // Envia o email usando EmailJS com tratamento de erro melhorado
             emailjs.send('service_kolibra', 'template_orcamento', {
                 from_name: formData.name,
                 from_email: formData.email,
@@ -60,6 +68,21 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(function(error) {
                 console.error('Erro ao enviar email:', error);
+                
+                // Restaurar botão
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+                
+                // Tentar envio alternativo
+                try {
+                    console.log("Tentando envio alternativo...");
+                    // Implementação futura de backup
+                } catch (backupError) {
+                    console.error('Erro no envio alternativo:', backupError);
+                }
+                
                 alert('Ocorreu um erro ao enviar sua solicitação. Por favor, tente novamente ou entre em contato diretamente pelo WhatsApp (35) 99979-6570.');
             });
         });

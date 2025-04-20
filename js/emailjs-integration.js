@@ -7,8 +7,11 @@ document.addEventListener('DOMContentLoaded', function() {
     document.head.appendChild(script);
     
     script.onload = function() {
-        // Inicializar EmailJS com a chave pública real
-        emailjs.init("N6NdKySx3h9Ocrnth");
+        // Inicializar EmailJS com a chave pública e privada
+        emailjs.init({
+            publicKey: "N6NdKySx3h9Ocrnth",
+            privateKey: "Q5LtTYRD-bXVCB9oLI-J5" // Adicionando a chave privada para autenticação completa
+        });
         
         // Verificar se estamos em uma página com formulário
         const forms = document.querySelectorAll('form');
@@ -102,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             formData.form_title = "Formulário do site Kolibra Solutions";
                         }
                         
-                        // Enviar e-mail usando EmailJS
+                        // Enviar e-mail usando EmailJS com tratamento de erro melhorado
                         emailjs.send(serviceId, templateId, formData)
                             .then(function(response) {
                                 console.log('E-mail enviado com sucesso!', response);
@@ -123,6 +126,18 @@ document.addEventListener('DOMContentLoaded', function() {
                                 if (submitBtn) {
                                     submitBtn.disabled = false;
                                     submitBtn.textContent = originalText;
+                                }
+                                
+                                // Tentar envio alternativo via backup
+                                try {
+                                    // Enviar para o endpoint de backup (pode ser implementado posteriormente)
+                                    const backupEndpoint = form.getAttribute('data-original-action');
+                                    if (backupEndpoint) {
+                                        // Implementação futura de backup
+                                        console.log("Tentando envio alternativo...");
+                                    }
+                                } catch (backupError) {
+                                    console.error('Erro no envio alternativo:', backupError);
                                 }
                                 
                                 // Mostrar mensagem de erro
