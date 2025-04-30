@@ -451,6 +451,90 @@
             margin-bottom: 25px;
         }
         
+        /* Highlighted Article Card */
+        .highlighted-article {
+            background-color: #FFF9F5;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 60px;
+            display: flex;
+            flex-direction: row;
+        }
+        
+        .highlighted-article-image {
+            flex: 1;
+            min-width: 300px;
+            max-width: 500px;
+        }
+        
+        .highlighted-article-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .highlighted-article-content {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .highlighted-article-category {
+            display: inline-block;
+            background-color: rgba(255, 127, 0, 0.1);
+            color: var(--secondary-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .highlighted-article-title {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .highlighted-article-description {
+            color: var(--gray-dark);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+        
+        .highlighted-article-button {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: 600;
+            text-align: center;
+            align-self: flex-start;
+            transition: all 0.3s ease;
+        }
+        
+        .highlighted-article-button:hover {
+            background-color: #e67300;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 127, 0, 0.3);
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .highlighted-article {
+                flex-direction: column;
+            }
+            
+            .highlighted-article-image {
+                max-width: 100%;
+                height: 250px;
+            }
+        }
+        
         /* Newsletter */
         .newsletter {
             background-color: var(--primary-color);
@@ -554,10 +638,10 @@
         }
         
         .footer-title::after {
-            content: '';
+            content: "";
             position: absolute;
-            bottom: 0;
             left: 0;
+            bottom: 0;
             width: 50px;
             height: 2px;
             background-color: var(--secondary-color);
@@ -590,10 +674,9 @@
         }
         
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 30px;
             text-align: center;
-            font-size: 0.9rem;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         /* Responsividade */
@@ -603,11 +686,15 @@
             }
             
             .featured-image {
-                height: 300px;
+                min-height: 300px;
             }
         }
         
         @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 0;
+            }
+            
             .nav-menu {
                 position: fixed;
                 top: 80px;
@@ -620,6 +707,7 @@
                 justify-content: flex-start;
                 padding-top: 50px;
                 transition: var(--transition);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
             }
             
             .nav-menu.active {
@@ -634,8 +722,20 @@
                 display: block;
             }
             
+            .nav-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .nav-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .nav-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+            
             .posts-grid {
-                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                grid-template-columns: 1fr;
             }
             
             .newsletter-form {
@@ -652,20 +752,6 @@
                 padding: 15px;
             }
         }
-        
-        @media (max-width: 576px) {
-            .blog-header h1 {
-                font-size: 2rem;
-            }
-            
-            .featured-content {
-                padding: 30px 20px;
-            }
-            
-            .featured-title {
-                font-size: 1.5rem;
-            }
-        }
     </style>
 </head>
 <body>
@@ -677,10 +763,10 @@
             </a>
             
             <ul class="nav-menu">
-                <li><a href="../index.html" id="menu-home">Home</a></li>
-                <li><a href="../portfolio.html" id="menu-portfolio">Portfólio</a></li>
-                <li><a href="index.html" id="menu-blog" class="active">Blog</a></li>
-                <li><a href="../construtor.html" id="menu-construtor" class="btn-nav">Construir Pacote</a></li>
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="index.html" class="active">Blog</a></li>
+                <li><a href="../portfolio.html">Portfólio</a></li>
+                <li><a href="../construtor.html" class="btn-nav">Construir Plano</a></li>
             </ul>
             
             <div class="nav-toggle" id="navToggle">
@@ -694,7 +780,7 @@
     <!-- Breadcrumbs -->
     <div class="breadcrumbs">
         <div class="container">
-            <a href="../index.html">Home</a> > <span>Blog</span>
+            <a href="../index.html">Home</a> &gt; <span>Blog</span>
         </div>
     </div>
     
@@ -702,7 +788,7 @@
     <header class="blog-header">
         <div class="container">
             <h1>Blog Kolibra</h1>
-            <p>Conteúdo educativo para empreendedores e profissionais autônomos que desejam impulsionar seus negócios com soluções digitais acessíveis.</p>
+            <p>Conteúdo educativo para empreendedores e profissionais autônomos que desejam impulsionar seus negócios</p>
         </div>
     </header>
     
@@ -711,11 +797,11 @@
         <div class="container">
             <div class="category-tabs">
                 <div class="category-tab active">Todos</div>
-                <div class="category-tab">Manicures e Pedicures</div>
-                <div class="category-tab">Terapeutas Holísticos</div>
-                <div class="category-tab">Marmitas Saudáveis</div>
-                <div class="category-tab">Marketing Digital</div>
                 <div class="category-tab">Empreendedorismo</div>
+                <div class="category-tab">Marketing Digital</div>
+                <div class="category-tab">Design</div>
+                <div class="category-tab">Finanças</div>
+                <div class="category-tab">Produtividade</div>
             </div>
         </div>
     </section>
@@ -723,35 +809,36 @@
     <!-- Blog Content -->
     <section class="blog-grid">
         <div class="container">
-            <!-- Featured Post -->
-            <div class="featured-post">
-                <div class="featured-image">
-                    <img src="../blog/posts/manicures/img/manicure_banner.png" alt="Como iniciar um negócio de manicure com apenas R$500">
+            <!-- Highlighted Article - Design de Sobrancelhas -->
+            <div class="highlighted-article">
+                <div class="highlighted-article-image">
+                    <img src="https://images.unsplash.com/photo-1600442715817-4d9c8b6c729d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" alt="Design de Sobrancelhas">
                 </div>
-                <div class="featured-content">
-                    <span class="featured-category">Manicures e Pedicures</span>
-                    <h2 class="featured-title">Como iniciar um negócio de manicure com apenas R$500</h2>
-                    <p class="featured-excerpt">Descubra como montar seu próprio negócio de manicure e pedicure com um investimento mínimo, incluindo lista de equipamentos essenciais, estratégias de marketing e dicas para conquistar seus primeiros clientes.</p>
-                    <a href="posts/manicures/como-iniciar-negocio-manicure.html" class="btn btn-secondary">Ler artigo completo</a>
+                <div class="highlighted-article-content">
+                    <span class="highlighted-article-category">Design de Sobrancelhas</span>
+                    <h2 class="highlighted-article-title">Como iniciar um negócio de design de sobrancelhas com apenas R$500</h2>
+                    <p class="highlighted-article-description">Descubra como montar seu próprio negócio de design de sobrancelhas com um investimento mínimo, incluindo lista de equipamentos essenciais, estratégias de marketing e dicas para conquistar seus primeiros clientes.</p>
+                    <a href="design-sobrancelhas.html" class="highlighted-article-button">Ler artigo completo</a>
                 </div>
             </div>
             
-            <!-- Posts Grid -->
+            <h2>Artigos Recentes</h2>
+            
             <div class="posts-grid">
                 <!-- Post 1 -->
                 <div class="post-card">
                     <div class="post-image">
-                        <img src="https://via.placeholder.com/350x200" alt="5 técnicas essenciais de massagem para terapeutas iniciantes">
+                        <img src="https://images.unsplash.com/photo-1556155092-490a1ba16284?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Marketing Digital">
                     </div>
                     <div class="post-content">
-                        <span class="post-category">Terapeutas Holísticos</span>
-                        <h3 class="post-title">5 técnicas essenciais de massagem para terapeutas iniciantes</h3>
-                        <p class="post-excerpt">Aprenda as técnicas fundamentais que todo terapeuta holístico deve dominar para oferecer um serviço de qualidade e conquistar clientes fiéis.</p>
+                        <span class="post-category">Marketing Digital</span>
+                        <h3 class="post-title">7 Estratégias de Marketing Digital para Pequenos Negócios</h3>
+                        <p class="post-excerpt">Descubra estratégias eficazes de marketing digital que podem ser implementadas com orçamento limitado e gerar resultados significativos.</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <i class="far fa-calendar-alt"></i> 18 Abr 2025
+                                <i class="far fa-calendar-alt"></i> 15 Abr 2025
                             </div>
-                            <a href="posts/terapeutas/tecnicas-essenciais-massagem.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -759,17 +846,17 @@
                 <!-- Post 2 -->
                 <div class="post-card">
                     <div class="post-image">
-                        <img src="https://via.placeholder.com/350x200" alt="Guia completo para iniciar seu negócio de marmitas saudáveis">
+                        <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Finanças">
                     </div>
                     <div class="post-content">
-                        <span class="post-category">Marmitas Saudáveis</span>
-                        <h3 class="post-title">Guia completo para iniciar seu negócio de marmitas saudáveis</h3>
-                        <p class="post-excerpt">Tudo o que você precisa saber para começar um negócio de marmitas fitness: equipamentos, precificação, cardápios e estratégias de venda.</p>
+                        <span class="post-category">Finanças</span>
+                        <h3 class="post-title">Gestão Financeira para Autônomos: Um Guia Completo</h3>
+                        <p class="post-excerpt">Aprenda a organizar suas finanças, separar contas pessoais e profissionais, e garantir a saúde financeira do seu negócio.</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <i class="far fa-calendar-alt"></i> 15 Abr 2025
+                                <i class="far fa-calendar-alt"></i> 10 Abr 2025
                             </div>
-                            <a href="posts/marmitas/guia-negocio-marmitas-saudaveis.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -777,17 +864,17 @@
                 <!-- Post 3 -->
                 <div class="post-card">
                     <div class="post-image">
-                        <img src="https://via.placeholder.com/350x200" alt="Como criar uma identidade visual marcante para seu salão de beleza">
+                        <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Produtividade">
                     </div>
                     <div class="post-content">
-                        <span class="post-category">Manicures e Pedicures</span>
-                        <h3 class="post-title">Como criar uma identidade visual marcante para seu salão de beleza</h3>
-                        <p class="post-excerpt">Dicas práticas para desenvolver uma identidade visual profissional que destaque seu negócio e atraia mais clientes.</p>
+                        <span class="post-category">Produtividade</span>
+                        <h3 class="post-title">5 Técnicas de Gestão de Tempo para Empreendedores</h3>
+                        <p class="post-excerpt">Conheça técnicas eficazes para gerenciar seu tempo, aumentar a produtividade e equilibrar vida pessoal e profissional.</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <i class="far fa-calendar-alt"></i> 10 Abr 2025
+                                <i class="far fa-calendar-alt"></i> 5 Abr 2025
                             </div>
-                            <a href="posts/manicures/identidade-visual-salao.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -795,17 +882,17 @@
                 <!-- Post 4 -->
                 <div class="post-card">
                     <div class="post-image">
-                        <img src="https://via.placeholder.com/350x200" alt="Como montar um consultório de terapias holísticas com baixo investimento">
+                        <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="Design">
                     </div>
                     <div class="post-content">
-                        <span class="post-category">Terapeutas Holísticos</span>
-                        <h3 class="post-title">Como montar um consultório de terapias holísticas com baixo investimento</h3>
-                        <p class="post-excerpt">Guia passo a passo para criar um espaço acolhedor e profissional para atender seus clientes, mesmo com orçamento limitado.</p>
+                        <span class="post-category">Design</span>
+                        <h3 class="post-title">A Importância da Identidade Visual para Pequenos Negócios</h3>
+                        <p class="post-excerpt">Entenda por que investir em uma identidade visual profissional é essencial para o sucesso do seu negócio, mesmo com orçamento limitado.</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <i class="far fa-calendar-alt"></i> 5 Abr 2025
+                                <i class="far fa-calendar-alt"></i> 1 Abr 2025
                             </div>
-                            <a href="posts/terapeutas/montar-consultorio-baixo-investimento.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -813,17 +900,17 @@
                 <!-- Post 5 -->
                 <div class="post-card">
                     <div class="post-image">
-                        <img src="https://via.placeholder.com/350x200" alt="7 estratégias de marketing digital para vender mais marmitas">
+                        <img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=869&q=80" alt="Empreendedorismo">
                     </div>
                     <div class="post-content">
-                        <span class="post-category">Marmitas Saudáveis</span>
-                        <h3 class="post-title">7 estratégias de marketing digital para vender mais marmitas</h3>
-                        <p class="post-excerpt">Aprenda a usar as redes sociais, WhatsApp Business e outras ferramentas digitais para aumentar suas vendas de marmitas saudáveis.</p>
+                        <span class="post-category">Empreendedorismo</span>
+                        <h3 class="post-title">Como Validar sua Ideia de Negócio com Menos de R$1.000</h3>
+                        <p class="post-excerpt">Aprenda métodos práticos para testar e validar sua ideia de negócio antes de fazer grandes investimentos.</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <i class="far fa-calendar-alt"></i> 1 Abr 2025
+                                <i class="far fa-calendar-alt"></i> 25 Mar 2025
                             </div>
-                            <a href="posts/marmitas/estrategias-marketing-marmitas.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
@@ -831,20 +918,24 @@
                 <!-- Post 6 -->
                 <div class="post-card">
                     <div class="post-image">
-                        <img src="https://via.placeholder.com/350x200" alt="Como precificar seus serviços de manicure e aumentar sua lucratividade">
+                        <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80" alt="Marketing Digital">
                     </div>
                     <div class="post-content">
-                        <span class="post-category">Manicures e Pedicures</span>
-                        <h3 class="post-title">Como precificar seus serviços de manicure e aumentar sua lucratividade</h3>
-                        <p class="post-excerpt">Aprenda a calcular o valor justo para seus serviços, considerando custos, tempo e valor percebido pelo cliente.</p>
+                        <span class="post-category">Marketing Digital</span>
+                        <h3 class="post-title">Como Criar uma Estratégia de Conteúdo Eficaz para Instagram</h3>
+                        <p class="post-excerpt">Dicas práticas para desenvolver uma estratégia de conteúdo que engaje seu público e converta seguidores em clientes.</p>
                         <div class="post-meta">
                             <div class="post-date">
-                                <i class="far fa-calendar-alt"></i> 28 Mar 2025
+                                <i class="far fa-calendar-alt"></i> 20 Mar 2025
                             </div>
-                            <a href="posts/manicures/precificacao-servicos-manicure.html" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
+                            <a href="#" class="read-more">Ler mais <i class="fas fa-arrow-right"></i></a>
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="#" class="btn btn-primary">Carregar Mais Artigos</a>
             </div>
         </div>
     </section>
@@ -852,8 +943,8 @@
     <!-- Newsletter -->
     <section class="newsletter">
         <div class="container">
-            <h2>Inscreva-se em nossa Newsletter</h2>
-            <p>Receba conteúdo exclusivo, dicas e novidades diretamente no seu e-mail.</p>
+            <h2>Inscreva-se em Nossa Newsletter</h2>
+            <p>Receba conteúdo exclusivo, dicas práticas e novidades diretamente no seu e-mail</p>
             <form class="newsletter-form">
                 <input type="email" class="newsletter-input" placeholder="Seu melhor e-mail" required>
                 <button type="submit" class="newsletter-btn">Inscrever-se</button>
@@ -866,14 +957,15 @@
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-about">
-                    <div class="footer-logo">
+                    <a href="../index.html" class="footer-logo">
                         <img src="../img/logo-new.png" alt="KOLIBRA SOLUTIONS">
-                    </div>
-                    <p>Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grande impacto.</p>
+                    </a>
+                    <p>Soluções tecnológicas acessíveis para impulsionar pequenos negócios com grandes resultados.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/kolibrasolutions/" class="social-link" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/company/kolibrasolutions/" class="social-link" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://www.tiktok.com/@kolibrasolutions" class="social-link" target="_blank"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 
@@ -881,21 +973,21 @@
                     <h3 class="footer-title">Links Rápidos</h3>
                     <ul>
                         <li><a href="../index.html">Home</a></li>
-                        <li><a href="../portfolio.html">Portfólio</a></li>
                         <li><a href="index.html">Blog</a></li>
-                        <li><a href="../construtor.html">Construir Pacote</a></li>
-                        <li><a href="../segmentacao.html">Escolha seu caminho</a></li>
+                        <li><a href="../portfolio.html">Portfólio</a></li>
+                        <li><a href="../construtor.html">Construir Plano</a></li>
+                        <li><a href="../selecao-kit.html">Kits</a></li>
                     </ul>
                 </div>
                 
                 <div class="footer-links">
-                    <h3 class="footer-title">Categorias do Blog</h3>
+                    <h3 class="footer-title">Categorias</h3>
                     <ul>
-                        <li><a href="#">Manicures e Pedicures</a></li>
-                        <li><a href="#">Terapeutas Holísticos</a></li>
-                        <li><a href="#">Marmitas Saudáveis</a></li>
-                        <li><a href="#">Marketing Digital</a></li>
                         <li><a href="#">Empreendedorismo</a></li>
+                        <li><a href="#">Marketing Digital</a></li>
+                        <li><a href="#">Design</a></li>
+                        <li><a href="#">Finanças</a></li>
+                        <li><a href="#">Produtividade</a></li>
                     </ul>
                 </div>
                 
@@ -904,15 +996,15 @@
                     <ul>
                         <li>
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Rua Julião Calixto de Abdala, 87<br>Muzambinho, MG, 37890-000</span>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone-alt"></i>
-                            <span>(35) 99979-6570</span>
+                            <span>São Paulo, SP - Brasil</span>
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            <span>kolibrasolutions@gmail.com</span>
+                            <span>contato@kolibrasolutions.com.br</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <span>(11) 99999-9999</span>
                         </li>
                     </ul>
                 </div>
@@ -926,12 +1018,13 @@
     
     <!-- JavaScript -->
     <script>
+        // Menu Mobile
         document.addEventListener('DOMContentLoaded', function() {
-            // Toggle Menu
             const navToggle = document.getElementById('navToggle');
             const navMenu = document.querySelector('.nav-menu');
             
             navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
                 navMenu.classList.toggle('active');
             });
             
@@ -942,22 +1035,7 @@
                 tab.addEventListener('click', function() {
                     categoryTabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
-                    
-                    // Aqui seria implementada a filtragem dos posts por categoria
-                    // Por enquanto, apenas visual
                 });
-            });
-            
-            // Newsletter Form
-            const newsletterForm = document.querySelector('.newsletter-form');
-            
-            newsletterForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                const email = this.querySelector('input').value;
-                
-                // Aqui seria implementado o envio do email para o sistema de newsletter
-                alert('Obrigado por se inscrever! Em breve você receberá nossos conteúdos exclusivos.');
-                this.reset();
             });
         });
     </script>

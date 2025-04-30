@@ -38,6 +38,16 @@ document.addEventListener('DOMContentLoaded', function() {
                     formFields[key] = value;
                 }
                 
+                // Verifica se há campos obrigatórios
+                const requiredFields = form.querySelectorAll('[required]');
+                for (let field of requiredFields) {
+                    if (!field.value.trim()) {
+                        field.classList.add('is-invalid');
+                        throw new Error(`O campo ${field.name} é obrigatório`);
+                    }
+                    field.classList.remove('is-invalid');
+                }
+                
                 // Formata a mensagem para o WhatsApp
                 let whatsappMessage = `*Formulário - Kolibra Solutions*\n\n`;
                 
@@ -73,19 +83,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Número de WhatsApp da Kolibra Solutions
                 const whatsappNumber = '5535999796570';
                 
-                // Método 1: Usando window.open (mais compatível com bloqueadores de pop-up)
-                const whatsappWindow = window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+                // URL do WhatsApp
+                const whatsappURL = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
                 
-                // Método 2: Fallback para window.location se window.open falhar
+                // Tenta abrir em uma nova janela
+                const whatsappWindow = window.open(whatsappURL, '_blank');
+                
+                // Se não conseguir abrir em nova janela, redireciona a página atual
                 if (!whatsappWindow || whatsappWindow.closed || typeof whatsappWindow.closed === 'undefined') {
-                    window.location.href = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+                    window.location.href = whatsappURL;
                 }
                 
                 return true;
             } catch (error) {
                 // Em caso de erro, oferece link direto para WhatsApp
                 console.error("Erro ao processar dados do formulário:", error);
-                alert("Ocorreu um erro ao processar seu formulário. Clique em OK para entrar em contato direto pelo WhatsApp.");
+                alert(`Ocorreu um erro: ${error.message}\nClique em OK para entrar em contato direto pelo WhatsApp.`);
                 window.location.href = "https://wa.me/5535999796570";
                 return false;
             }

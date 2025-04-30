@@ -25,6 +25,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Verifica se os objetos e elementos existem antes de acessá-los
                 if (window.selectedPlan && window.selectedPlan.name) {
                     planName = window.selectedPlan.name;
+                } else {
+                    throw new Error('Plano selecionado inválido');
                 }
                 
                 if (window.selectedServices && Array.isArray(window.selectedServices) && window.selectedServices.length > 0) {
@@ -40,8 +42,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 
                 const totalPriceElement = document.getElementById('totalPrice');
-                if (totalPriceElement) {
+                if (totalPriceElement && totalPriceElement.textContent) {
                     totalPrice = totalPriceElement.textContent;
+                } else {
+                    throw new Error('Preço total não encontrado');
                 }
                 
                 const paymentMethodElement = document.querySelector('input[name="payment_method"]:checked');
@@ -100,12 +104,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     encodedMessage = encodeURIComponent(shortMessage);
                 }
                 
-                // Método 1: Usando window.open (mais compatível com bloqueadores de pop-up)
-                const whatsappWindow = window.open(`https://wa.me/5535999796570?text=${encodedMessage}`, '_blank');
+                // URL do WhatsApp
+                const whatsappURL = `https://wa.me/5535999796570?text=${encodedMessage}`;
                 
-                // Método 2: Fallback para window.location se window.open falhar
+                // Tenta abrir em uma nova janela
+                const whatsappWindow = window.open(whatsappURL, '_blank');
+                
+                // Se não conseguir abrir em nova janela, redireciona a página atual
                 if (!whatsappWindow || whatsappWindow.closed || typeof whatsappWindow.closed === 'undefined') {
-                    window.location.href = `https://wa.me/5535999796570?text=${encodedMessage}`;
+                    window.location.href = whatsappURL;
                 }
                 
                 return true;

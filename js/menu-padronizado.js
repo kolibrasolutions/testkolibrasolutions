@@ -43,7 +43,6 @@ function inserirMenuPadronizado() {
         case 'construtor.html':
             document.getElementById('menu-construtor').classList.add('active');
             break;
-        case 'orcamento.html':
         case 'segmentacao.html':
         case 'diagnostico.html':
         case 'selecao-kit.html':
@@ -80,9 +79,6 @@ function adicionarBreadcrumbs() {
     switch(paginaAtual) {
         case 'portfolio.html':
             breadcrumbHTML += ' > <span>Portfólio</span>';
-            break;
-        case 'orcamento.html':
-            breadcrumbHTML += ' > <span>Orçamento</span>';
             break;
         case 'segmentacao.html':
             breadcrumbHTML += ' > <span>Escolha seu caminho</span>';
